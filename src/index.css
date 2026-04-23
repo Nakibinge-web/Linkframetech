@@ -5,15 +5,17 @@
 
 @layer base {
   * {
-    @apply box-border;
+    box-sizing: border-box;
   }
-  
+
   html {
-    @apply scroll-smooth;
+    scroll-behavior: smooth;
   }
-  
+
   body {
-    @apply bg-bg-dark text-text-light font-inter antialiased;
+    background-color: #0a0a0a;
+    color: #f5f5f5;
+    font-family: 'Inter', sans-serif;
     margin: 0;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -22,46 +24,120 @@
 
 @layer components {
   .btn-primary {
-    @apply bg-brand-orange text-white px-6 py-3 rounded-lg font-medium transition-all duration-300 hover:bg-opacity-90 hover:scale-105 hover:shadow-lg;
+    @apply inline-flex items-center justify-center gap-2 bg-brand-orange text-white px-6 py-3 rounded-lg font-medium transition-all duration-300 hover:opacity-90 hover:scale-105 hover:shadow-lg cursor-pointer;
   }
-  
+
   .btn-secondary {
-    @apply border border-brand-orange text-brand-orange px-6 py-3 rounded-lg font-medium transition-all duration-300 hover:bg-brand-orange hover:text-white;
+    @apply inline-flex items-center justify-center gap-2 border border-brand-orange text-brand-orange px-6 py-3 rounded-lg font-medium transition-all duration-300 hover:bg-brand-orange hover:text-white cursor-pointer;
   }
-  
+
   .section-padding {
     @apply px-4 sm:px-6 lg:px-8 py-16 lg:py-24;
   }
-  
+
   .container-max {
     @apply max-w-7xl mx-auto;
   }
-  
+
   .heading-xl {
     @apply font-fraunces text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight tracking-tight;
   }
-  
+
   .heading-lg {
     @apply font-fraunces text-3xl sm:text-4xl lg:text-5xl font-semibold leading-tight;
   }
-  
+
   .heading-md {
     @apply font-fraunces text-2xl sm:text-3xl font-semibold leading-tight;
   }
-  
+
   .heading-sm {
     @apply font-fraunces text-xl sm:text-2xl font-semibold;
   }
-  
+
   .text-body {
     @apply text-base sm:text-lg leading-relaxed text-text-muted;
   }
-  
-  .card-hover {
-    @apply transition-all duration-300 hover:scale-105 hover:-translate-y-2 hover:shadow-2xl;
-  }
-  
+
   .gradient-text {
     @apply bg-gradient-to-r from-brand-orange to-brand-blue bg-clip-text text-transparent;
+  }
+
+  /* Scroll-triggered fade-in */
+  .fade-up {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+  }
+
+  .fade-up.in-view {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .fade-in {
+    opacity: 0;
+    transition: opacity 0.5s ease-out;
+  }
+
+  .fade-in.in-view {
+    opacity: 1;
+  }
+
+  /* Stagger delays */
+  .delay-100 { transition-delay: 100ms; }
+  .delay-200 { transition-delay: 200ms; }
+  .delay-300 { transition-delay: 300ms; }
+  .delay-400 { transition-delay: 400ms; }
+
+  /* Page transition */
+  .page-enter {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  .page-enter-active {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.25s ease-out, transform 0.25s ease-out;
+  }
+
+  /* Hero entrance animations */
+  .hero-badge {
+    opacity: 0;
+    transform: translateY(16px);
+    animation: heroEnter 0.6s ease-out 0.1s forwards;
+  }
+  .hero-title {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: heroEnter 0.7s ease-out 0.25s forwards;
+  }
+  .hero-sub {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: heroEnter 0.7s ease-out 0.4s forwards;
+  }
+  .hero-cta {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: heroEnter 0.7s ease-out 0.55s forwards;
+  }
+  .hero-stats {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: heroEnter 0.7s ease-out 0.7s forwards;
+  }
+  .hero-images {
+    opacity: 0;
+    transform: translateX(24px);
+    animation: heroEnter 0.9s ease-out 0.4s forwards;
+  }
+
+  @keyframes heroEnter {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 }
