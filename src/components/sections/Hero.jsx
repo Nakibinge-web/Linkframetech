@@ -86,7 +86,7 @@ export default function Hero() {
       <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-[700px] h-[500px] bg-brand-orange/[0.04] rounded-full blur-[140px] pointer-events-none" />
       <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-[#004D66]/[0.08] rounded-full blur-[100px] pointer-events-none" />
 
-      <div className="container-max section-padding relative z-10 pt-32 pb-20">
+      <div className="container-max section-padding relative z-10 pt-[90px] pb-20">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
 
           {/* Left — text */}
