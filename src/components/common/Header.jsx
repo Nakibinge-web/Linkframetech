@@ -33,19 +33,17 @@ export default function Header() {
 
   return (
     <>
-      <header className="fixed top-0 left-0 right-0 z-50 flex justify-center pt-4 px-4 sm:px-6">
-        <div
-          className={`w-full max-w-5xl rounded-2xl px-4 py-2.5 transition-all duration-500 ${
-            scrolled
-              ? 'bg-[#0a0a0a]/85 backdrop-blur-2xl border border-white/[0.09] shadow-[0_8px_32px_rgba(0,0,0,0.5)]'
-              : 'bg-[#0a0a0a]/30 backdrop-blur-lg border border-white/[0.05]'
-          }`}
-        >
+      <header className={`fixed mb-10 top-0 left-0 right-0 z-50 w-full px-4 sm:px-6 lg:px-8 py-3.5 transition-all duration-500 ${
+          scrolled
+            ? 'bg-white/[0.04] backdrop-blur-2xl shadow-[0_4px_24px_rgba(0,0,0,0.4)]'
+            : 'bg-transparent'
+        }`}>
+        <div className="max-w-8xl mx-auto">
           {/* 3-col grid: logo | nav (centered) | cta */}
-          <div className="grid grid-cols-[1fr_auto_1fr] items-center gap-4">
+          <div className="grid grid-cols-[1fr_auto_1fr] items-center gap-6">
 
             {/* Logo — left */}
-            <Link to="/" className="flex items-center gap-2.5 group justify-self-start">
+            <Link to="/" className="ml-[90px] flex items-center gap-2.5 group justify-self-start">
               <div className="relative w-8 h-8 rounded-lg bg-brand-orange flex items-center justify-center overflow-hidden shadow-[0_0_12px_rgba(242,102,34,0.4)]">
                 <span className="font-fraunces font-bold text-white text-xs relative z-10 tracking-tight">LF</span>
                 <div className="absolute inset-0 bg-gradient-to-br from-[#ff9a5c] to-brand-orange opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
@@ -56,21 +54,21 @@ export default function Header() {
             </Link>
 
             {/* Nav — truly centered */}
-            <nav className="hidden md:flex items-center gap-0.5 bg-white/[0.03] border border-white/[0.06] rounded-xl px-1.5 py-1.5">
+            <nav className="hidden md:flex items-center gap-1  rounded-2xl px-3 py-2.5 min-w-[680px] justify-center">
               {navLinks.map(({ label, path }) => {
                 const active = location.pathname === path;
                 return (
                   <Link
                     key={path}
                     to={path}
-                    className={`relative px-4 py-1.5 rounded-lg text-sm font-medium transition-all duration-200 whitespace-nowrap ${
+                    className={`relative px-6 py-2 rounded-xl text-sm font-medium transition-all duration-200 whitespace-nowrap ${
                       active
                         ? 'text-white bg-white/[0.09] shadow-sm'
-                        : 'text-text-muted hover:text-text-light hover:bg-white/[0.04]'
+                        : 'text-text-muted hover:text-text-light hover:bg-white/[0.05]'
                     }`}
                   >
                     {active && (
-                      <span className="absolute left-2.5 top-1/2 -translate-y-1/2 w-1 h-1 rounded-full bg-brand-orange" />
+                      <span className="absolute left-3 top-1/2 -translate-y-1/2 w-1 h-1 rounded-full bg-brand-orange" />
                     )}
                     <span className={active ? 'pl-2' : ''}>{label}</span>
                   </Link>
@@ -79,7 +77,7 @@ export default function Header() {
             </nav>
 
             {/* Right — CTA + mobile toggle */}
-            <div className="flex items-center gap-3 justify-self-end">
+            <div className="flex items-center gap-3 justify-self-end mr-[90px]">
               <Link
                 to="/contact"
                 className="hidden md:inline-flex items-center gap-1.5 bg-brand-orange text-white text-sm font-medium px-4 py-2 rounded-xl transition-all duration-300 hover:shadow-[0_0_22px_rgba(242,102,34,0.4)] hover:scale-[1.03] active:scale-[0.98] group"
