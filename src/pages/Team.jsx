@@ -60,11 +60,11 @@ function TeamSection({ label, value }) {
   return (
     <section className="section-padding border-t border-white/5">
       <div className="container-max">
-        <h2 className="heading-md text-text-light mb-12">{label}</h2>
+        <h2 className="heading-md text-text-light mb-12 text-center lg:text-left">{label}</h2>
         <div ref={ref} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {members.map(({ name, role, bio, skills }, i) => (
             <div key={name} className={`fade-up delay-${(i + 1) * 100} ${inView ? 'in-view' : ''}`}>
-              <Card className="flex flex-col gap-4 h-full group">
+              <Card className="flex flex-col gap-4 h-full group text-center lg:text-left items-center lg:items-start">
                 <div className="w-14 h-14 rounded-full bg-gradient-to-br from-brand-orange/30 to-brand-blue/30 border border-white/10 flex items-center justify-center transition-all duration-300 ease-out group-hover:scale-[1.05] group-hover:border-brand-orange/30">
                   <span className="text-text-light font-fraunces font-bold text-lg">
                     {name.split(' ').map((n) => n[0]).join('')}
@@ -75,7 +75,7 @@ function TeamSection({ label, value }) {
                   <p className="text-brand-orange text-xs font-medium mt-0.5">{role}</p>
                 </div>
                 <p className="text-text-muted text-sm leading-relaxed">{bio}</p>
-                <div className="flex flex-wrap gap-2 mt-auto">
+                <div className="flex flex-wrap gap-2 mt-auto justify-center lg:justify-start">
                   {skills.map((skill) => (
                     <span key={skill} className="text-xs px-2.5 py-1 rounded-full bg-white/5 text-text-muted border border-white/5 transition-colors duration-200 hover:border-brand-orange/30">
                       {skill}
@@ -100,9 +100,9 @@ export default function Team() {
       <section className="relative min-h-[55vh] flex items-end overflow-hidden">
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff08_1px,transparent_1px),linear-gradient(to_bottom,#ffffff08_1px,transparent_1px)] bg-[size:64px_64px]" />
         <div className="absolute top-1/3 right-1/3 w-[400px] h-[400px] bg-brand-blue/10 rounded-full blur-[100px] pointer-events-none" />
-        <div ref={heroRef} className="container-max section-padding relative z-10 pt-40">
+        <div ref={heroRef} className="container-max section-padding relative z-10 pt-40 text-center lg:text-left">
           <p className={`fade-up ${heroInView ? 'in-view' : ''} text-brand-orange text-sm font-medium uppercase tracking-widest mb-4`}>The Team</p>
-          <h1 className={`fade-up delay-100 ${heroInView ? 'in-view' : ''} heading-xl text-text-light max-w-3xl`}>
+          <h1 className={`fade-up delay-100 ${heroInView ? 'in-view' : ''} heading-xl text-text-light max-w-3xl mx-auto lg:mx-0`}>
             The people behind the work.
           </h1>
         </div>

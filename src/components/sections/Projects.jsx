@@ -36,7 +36,7 @@ export default function ProjectsSection() {
   return (
     <section className="section-padding bg-[#080808]">
       <div className="container-max">
-        <div ref={headerRef} className={`fade-up ${headerInView ? 'in-view' : ''} flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-16`}>
+        <div ref={headerRef} className={`fade-up ${headerInView ? 'in-view' : ''} flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-16 text-center sm:text-left mx-auto sm:mx-0`}>
           <div>
             <p className="text-brand-orange text-xs font-medium uppercase tracking-widest mb-3">Our Work</p>
             <h2 className="font-fraunces text-4xl sm:text-5xl font-bold text-text-light leading-tight">
@@ -45,7 +45,7 @@ export default function ProjectsSection() {
           </div>
           <Link
             to="/portfolio"
-            className="group inline-flex items-center gap-2 text-text-muted text-sm hover:text-text-light transition-colors duration-200 shrink-0"
+            className="group inline-flex items-center justify-center sm:justify-start gap-2 text-text-muted text-sm hover:text-text-light transition-colors duration-200 shrink-0"
           >
             View all projects
             <svg className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -79,12 +79,12 @@ export default function ProjectsSection() {
               </div>
 
               {/* Content */}
-              <div className="p-6">
+              <div className="p-6 text-center lg:text-left">
                 <h3 className="font-fraunces font-semibold text-lg text-text-light mb-2 group-hover:text-white transition-colors duration-300">
                   {title}
                 </h3>
-                <p className="text-text-muted text-sm leading-relaxed mb-4">{description}</p>
-                <div className="flex flex-wrap gap-2">
+                <p className="text-text-muted text-sm leading-relaxed mb-4 mx-auto lg:mx-0">{description}</p>
+                <div className="flex flex-wrap gap-2 justify-center lg:justify-start">
                   {tags.map((tag) => (
                     <span key={tag} className="text-xs px-2.5 py-1 rounded-full bg-white/[0.04] text-text-muted border border-white/[0.06]">
                       {tag}

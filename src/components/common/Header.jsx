@@ -9,7 +9,7 @@ const navLinks = [
   { label: 'Team', path: '/team' },
 ];
 
-const allLinks = [{ label: 'Home', path: '/' }, ...navLinks, { label: 'Contact', path: '/contact' }];
+const allLinks = [...navLinks, { label: 'Contact', path: '/contact' }];
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
@@ -25,12 +25,6 @@ export default function Header() {
   // Close drawer on route change
   useEffect(() => setMenuOpen(false), [location]);
 
-  // Lock body scroll when drawer is open
-  useEffect(() => {
-    document.body.style.overflow = menuOpen ? 'hidden' : '';
-    return () => { document.body.style.overflow = ''; };
-  }, [menuOpen]);
-
   return (
     <>
       <header className={`fixed mb-10 top-0 left-0 right-0 z-50 w-full px-4 sm:px-6 lg:px-8 py-3.5 transition-all duration-500 ${
@@ -39,11 +33,11 @@ export default function Header() {
             : 'bg-transparent'
         }`}>
         <div className="max-w-8xl mx-auto">
-          {/* 3-col grid: logo | nav (centered) | cta */}
-          <div className="grid grid-cols-[1fr_auto_1fr] items-center gap-6">
+          {/* Mobile: flex layout, Desktop: 3-col grid */}
+          <div className="flex md:grid md:grid-cols-[1fr_auto_1fr] items-center justify-between md:gap-6">
 
             {/* Logo — left */}
-            <Link to="/" className="ml-[90px] flex items-center gap-2.5 group justify-self-start">
+            <Link to="/" className="md:ml-[90px] flex items-center gap-2.5 group md:justify-self-start">
               <div className="relative w-8 h-8 rounded-lg bg-brand-orange flex items-center justify-center overflow-hidden shadow-[0_0_12px_rgba(242,102,34,0.4)]">
                 <span className="font-fraunces font-bold text-white text-xs relative z-10 tracking-tight">LF</span>
                 <div className="absolute inset-0 bg-gradient-to-br from-[#ff9a5c] to-brand-orange opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
@@ -77,7 +71,7 @@ export default function Header() {
             </nav>
 
             {/* Right — CTA + mobile toggle */}
-            <div className="flex items-center gap-3 justify-self-end mr-[90px]">
+            <div className="flex items-center gap-3 md:justify-self-end md:mr-[90px]">
               <Link
                 to="/contact"
                 className="hidden md:inline-flex items-center gap-1.5 bg-brand-orange text-white text-sm font-medium px-4 py-2 rounded-xl transition-all duration-300 hover:shadow-[0_0_22px_rgba(242,102,34,0.4)] hover:scale-[1.03] active:scale-[0.98] group"
@@ -103,61 +97,46 @@ export default function Header() {
         </div>
       </header>
 
-      {/* Mobile full-screen drawer */}
+      {/* Mobile dropdown menu */}
       <div
-        className={`fixed inset-0 z-40 md:hidden transition-all duration-400 ${
-          menuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
+        className={`fixed top-[60px] left-0 right-0 z-40 md:hidden transition-all duration-300 ease-out px-4 pointer-events-none ${
+          menuOpen ? 'opacity-100' : 'opacity-0'
         }`}
       >
-        {/* Backdrop */}
+        {/* Dropdown panel — slides down from navbar */}
         <div
-          className="absolute inset-0 bg-black/60 backdrop-blur-sm"
-          onClick={() => setMenuOpen(false)}
-        />
-
-        {/* Drawer panel — slides in from right */}
-        <div
-          className={`absolute top-0 right-0 h-full w-[80vw] max-w-xs bg-[#0d0d0d] border-l border-white/[0.07] flex flex-col transition-transform duration-400 ease-out ${
-            menuOpen ? 'translate-x-0' : 'translate-x-full'
+          className={`relative w-full max-w-sm mx-auto bg-[#0d0d0d] border border-white/[0.07] rounded-2xl flex flex-col transition-all duration-300 ease-out transform shadow-2xl pointer-events-auto ${
+            menuOpen ? 'translate-y-0 opacity-100' : '-translate-y-4 opacity-0'
           }`}
         >
           {/* Drawer header */}
-          <div className="flex items-center justify-between px-6 pt-6 pb-5 border-b border-white/[0.06]">
+          <div className="flex items-center px-5 pt-5 pb-4 border-b border-white/[0.06]">
             <Link to="/" className="flex items-center gap-2" onClick={() => setMenuOpen(false)}>
-              <div className="w-7 h-7 rounded-lg bg-brand-orange flex items-center justify-center">
-                <span className="font-fraunces font-bold text-white text-xs">LF</span>
+              <div className="w-6 h-6 rounded-lg bg-brand-orange flex items-center justify-center">
+                <span className="font-fraunces font-bold text-white text-[10px]">LF</span>
               </div>
-              <span className="font-fraunces font-semibold text-text-light text-sm tracking-tight">
+              <span className="font-fraunces font-semibold text-text-light text-xs tracking-tight">
                 Linkframe<span className="text-brand-orange">.</span>
               </span>
             </Link>
-            <button
-              onClick={() => setMenuOpen(false)}
-              className="w-8 h-8 rounded-lg border border-white/[0.08] bg-white/[0.04] flex items-center justify-center text-text-muted hover:text-text-light transition-colors duration-200"
-              aria-label="Close menu"
-            >
-              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            </button>
           </div>
 
           {/* Nav links */}
-          <nav className="flex flex-col gap-1 px-4 py-6 flex-1">
+          <nav className="flex flex-col gap-1 px-3 py-5">
             {allLinks.map(({ label, path }, i) => {
               const active = location.pathname === path;
               return (
                 <Link
                   key={path}
                   to={path}
-                  className={`flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-all duration-200 ${
+                  className={`flex items-center gap-2.5 px-3 py-2.5 rounded-xl text-xs font-medium transition-all duration-200 ${
                     active
                       ? 'text-white bg-white/[0.07] border border-white/[0.08]'
                       : 'text-text-muted hover:text-text-light hover:bg-white/[0.04]'
                   }`}
                   style={{ transitionDelay: menuOpen ? `${i * 40}ms` : '0ms' }}
                 >
-                  {active && <span className="w-1.5 h-1.5 rounded-full bg-brand-orange shrink-0" />}
+                  {active && <span className="w-1 h-1 rounded-full bg-brand-orange shrink-0" />}
                   {label}
                 </Link>
               );
@@ -165,17 +144,17 @@ export default function Header() {
           </nav>
 
           {/* Drawer footer CTA */}
-          <div className="px-4 pb-8 pt-4 border-t border-white/[0.06]">
+          <div className="px-3 pb-6 pt-3 border-t border-white/[0.06]">
             <Link
               to="/contact"
-              className="flex items-center justify-center gap-2 w-full bg-brand-orange text-white text-sm font-medium py-3.5 rounded-xl transition-all duration-300 hover:shadow-[0_0_20px_rgba(242,102,34,0.35)] active:scale-[0.98]"
+              className="flex items-center justify-center gap-2 w-full bg-brand-orange text-white text-xs font-medium py-3 rounded-xl transition-all duration-300 hover:shadow-[0_0_20px_rgba(242,102,34,0.35)] active:scale-[0.98]"
             >
               Start a Project
-              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
               </svg>
             </Link>
-            <p className="text-center text-text-muted text-xs mt-3">hello@linkframe.tech</p>
+            <p className="text-center text-text-muted text-[10px] mt-2.5">hello@linkframe.tech</p>
           </div>
         </div>
       </div>

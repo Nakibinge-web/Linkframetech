@@ -33,7 +33,7 @@ export default function Process() {
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff03_1px,transparent_1px),linear-gradient(to_bottom,#ffffff03_1px,transparent_1px)] bg-[size:80px_80px]" />
 
       <div className="container-max relative z-10">
-        <div ref={headerRef} className={`fade-up ${headerInView ? 'in-view' : ''} max-w-xl mb-16`}>
+        <div ref={headerRef} className={`fade-up ${headerInView ? 'in-view' : ''} max-w-xl mb-16 text-center lg:text-left mx-auto lg:mx-0`}>
           <p className="text-brand-orange text-xs font-medium uppercase tracking-widest mb-3">How We Work</p>
           <h2 className="font-fraunces text-4xl sm:text-5xl font-bold text-text-light leading-tight">
             A process built<br />for clarity.
@@ -50,7 +50,7 @@ export default function Process() {
             {steps.map(({ step, title, description }, i) => (
               <div
                 key={step}
-                className={`fade-up delay-${(i + 1) * 100} ${gridInView ? 'in-view' : ''} group flex flex-col gap-5`}
+                className={`fade-up delay-${(i + 1) * 100} ${gridInView ? 'in-view' : ''} group flex flex-col gap-5 text-center lg:text-left items-center lg:items-start`}
               >
                 <div className="relative w-14 h-14 rounded-xl bg-[#0f0f0f] border border-white/[0.08] flex items-center justify-center transition-all duration-300 group-hover:border-brand-orange/40 group-hover:bg-brand-orange/[0.08] group-hover:-translate-y-1">
                   <span className="font-fraunces font-bold text-sm text-brand-orange">{step}</span>

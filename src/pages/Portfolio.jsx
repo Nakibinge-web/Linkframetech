@@ -67,9 +67,9 @@ export default function Portfolio() {
       <section className="relative min-h-[55vh] flex items-end overflow-hidden">
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff08_1px,transparent_1px),linear-gradient(to_bottom,#ffffff08_1px,transparent_1px)] bg-[size:64px_64px]" />
         <div className="absolute bottom-0 left-1/3 w-[500px] h-[300px] bg-brand-orange/8 rounded-full blur-[100px] pointer-events-none" />
-        <div ref={heroRef} className="container-max section-padding relative z-10 pt-40">
+        <div ref={heroRef} className="container-max section-padding relative z-10 pt-40 text-center lg:text-left">
           <p className={`fade-up ${heroInView ? 'in-view' : ''} text-brand-orange text-sm font-medium uppercase tracking-widest mb-4`}>Portfolio</p>
-          <h1 className={`fade-up delay-100 ${heroInView ? 'in-view' : ''} heading-xl text-text-light max-w-3xl`}>Work we're proud of.</h1>
+          <h1 className={`fade-up delay-100 ${heroInView ? 'in-view' : ''} heading-xl text-text-light max-w-3xl mx-auto lg:mx-0`}>Work we're proud of.</h1>
         </div>
       </section>
 
@@ -77,7 +77,7 @@ export default function Portfolio() {
       <section className="section-padding">
         <div className="container-max">
           {/* Filters */}
-          <div className="flex flex-wrap gap-3 mb-12">
+          <div className="flex flex-wrap gap-3 mb-12 justify-center lg:justify-start">
             {filters.map(({ label, value }) => (
               <button
                 key={value}
@@ -101,12 +101,12 @@ export default function Portfolio() {
                   <div className={`h-44 rounded-xl bg-gradient-to-br ${color} border border-white/5 flex items-center justify-center transition-all duration-300 ease-out group-hover:scale-[1.02]`}>
                     <span className="text-text-muted text-xs uppercase tracking-widest">{category}</span>
                   </div>
-                  <div>
+                  <div className="text-center lg:text-left">
                     <span className="text-brand-orange text-xs font-medium uppercase tracking-wide">{category}</span>
                     <h3 className="text-text-light font-fraunces font-semibold text-lg mt-1 mb-2">{title}</h3>
                     <p className="text-text-muted text-sm leading-relaxed">{description}</p>
                   </div>
-                  <div className="flex flex-wrap gap-2 mt-auto">
+                  <div className="flex flex-wrap gap-2 mt-auto justify-center lg:justify-start">
                     {tags.map((tag) => (
                       <span key={tag} className="text-xs px-2.5 py-1 rounded-full bg-white/5 text-text-muted border border-white/5 transition-colors duration-200 hover:border-brand-orange/30">
                         {tag}

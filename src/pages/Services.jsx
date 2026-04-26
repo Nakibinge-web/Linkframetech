@@ -40,12 +40,12 @@ function ServiceBlock({ icon, title, tagline, description, offerings, index }) {
       className={`fade-up ${inView ? 'in-view' : ''} grid grid-cols-1 lg:grid-cols-2 gap-12 items-center`}
     >
       {/* Text */}
-      <div className={index % 2 !== 0 ? 'lg:order-2' : ''}>
-        <span className="text-4xl mb-6 block transition-transform duration-300 ease-out hover:scale-110 inline-block">{icon}</span>
+      <div className={`text-center lg:text-left ${index % 2 !== 0 ? 'lg:order-2' : ''}`}>
+        <span className="text-4xl mb-6 block transition-transform duration-300 ease-out hover:scale-110 inline-block mx-auto lg:mx-0">{icon}</span>
         <p className="text-brand-orange text-sm font-medium uppercase tracking-widest mb-2">{tagline}</p>
         <h2 className="heading-md text-text-light mb-4">{title}</h2>
-        <p className="text-body mb-8">{description}</p>
-        <ul className="flex flex-col gap-3">
+        <p className="text-body mb-8 mx-auto lg:mx-0">{description}</p>
+        <ul className="flex flex-col gap-3 items-center lg:items-start">
           {offerings.map((item) => (
             <li key={item} className="flex items-center gap-3 text-text-muted text-sm group/item">
               <span className="w-1.5 h-1.5 rounded-full bg-brand-orange shrink-0 transition-transform duration-200 group-hover/item:scale-150" />
@@ -74,9 +74,9 @@ export default function Services() {
       <section className="relative min-h-[55vh] flex items-end overflow-hidden">
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff08_1px,transparent_1px),linear-gradient(to_bottom,#ffffff08_1px,transparent_1px)] bg-[size:64px_64px]" />
         <div className="absolute top-1/2 right-1/4 w-[400px] h-[400px] bg-brand-orange/8 rounded-full blur-[100px] pointer-events-none" />
-        <div ref={heroRef} className="container-max section-padding relative z-10 pt-40">
+        <div ref={heroRef} className="container-max section-padding relative z-10 pt-40 text-center lg:text-left">
           <p className={`fade-up ${heroInView ? 'in-view' : ''} text-brand-orange text-sm font-medium uppercase tracking-widest mb-4`}>Services</p>
-          <h1 className={`fade-up delay-100 ${heroInView ? 'in-view' : ''} heading-xl text-text-light max-w-3xl`}>
+          <h1 className={`fade-up delay-100 ${heroInView ? 'in-view' : ''} heading-xl text-text-light max-w-3xl mx-auto lg:mx-0`}>
             Three disciplines. One team.
           </h1>
         </div>

@@ -47,7 +47,7 @@ export default function ServicesSection() {
     <section className="section-padding bg-[#080808]">
       <div className="container-max">
         {/* Header */}
-        <div ref={ref} className={`fade-up ${inView ? 'in-view' : ''} mb-16`}>
+        <div ref={ref} className={`fade-up ${inView ? 'in-view' : ''} mb-16 text-center lg:text-left mx-auto lg:mx-0`}>
           <p className="text-brand-orange text-xs font-medium uppercase tracking-widest mb-3">What We Do</p>
           <h2 className="font-fraunces text-4xl sm:text-5xl font-bold text-text-light leading-tight">
             Three disciplines,<br />one team.
@@ -98,10 +98,10 @@ export default function ServicesSection() {
                 <p className="font-fraunces text-xl font-bold text-white">{current.title}</p>
               </div>
             </div>
-            <div className="p-8 lg:p-10 flex flex-col justify-between flex-1">
+            <div className="p-8 lg:p-10 flex flex-col justify-between flex-1 text-center lg:text-left">
               <div key={current.id + '-content'}>
-                <p className="text-text-muted text-sm leading-relaxed mb-6">{current.description}</p>
-                <div className="flex flex-wrap gap-2 mb-8">
+                <p className="text-text-muted text-sm leading-relaxed mb-6 mx-auto lg:mx-0">{current.description}</p>
+                <div className="flex flex-wrap gap-2 mb-8 justify-center lg:justify-start">
                   {current.tags.map((tag) => (
                     <span key={tag} className="text-xs px-3 py-1.5 rounded-full border border-white/10 text-text-muted hover:border-brand-orange/40 hover:text-text-light transition-all duration-200">
                       {tag}
@@ -111,7 +111,7 @@ export default function ServicesSection() {
               </div>
               <Link
                 to="/services"
-                className="group inline-flex items-center gap-2 text-brand-orange text-sm font-medium"
+                className="group inline-flex items-center gap-2 text-brand-orange text-sm font-medium mx-auto lg:mx-0"
               >
                 Explore this service
                 <svg className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>

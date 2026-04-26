@@ -37,15 +37,15 @@ export default function WhyUs() {
       </div>
       <div className="container-max relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-start">
-          <div ref={headerRef} className={`fade-up ${headerInView ? 'in-view' : ''}`}>
+          <div ref={headerRef} className={`fade-up ${headerInView ? 'in-view' : ''} text-center lg:text-left`}>
             <p className="text-brand-orange text-xs font-medium uppercase tracking-widest mb-4">Why Linkframe</p>
             <h2 className="font-fraunces text-4xl sm:text-5xl font-bold text-text-light leading-tight mb-6">
               We don't just deliver —<br />we partner.
             </h2>
-            <p className="text-text-muted text-base leading-relaxed mb-10">
+            <p className="text-text-muted text-base leading-relaxed mb-10 mx-auto lg:mx-0 max-w-prose">
               Most agencies hand you a product and disappear. We stay invested in your outcomes because your success is how we measure ours.
             </p>
-            <div className="inline-flex items-center gap-3 px-5 py-3 rounded-xl bg-brand-orange/[0.08] border border-brand-orange/20">
+            <div className="inline-flex items-center gap-3 px-5 py-3 rounded-xl bg-brand-orange/[0.08] border border-brand-orange/20 mx-auto lg:mx-0">
               <span className="w-2 h-2 rounded-full bg-brand-orange animate-pulse" />
               <span className="text-brand-orange text-sm font-medium">Currently accepting new projects</span>
             </div>
