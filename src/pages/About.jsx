@@ -42,7 +42,6 @@ const disciplines = [
     desc: 'Custom web applications, REST APIs, and internal systems engineered for your exact workflow — not adapted from templates.',
     tags: ['Web Apps', 'REST APIs', 'System Architecture', 'Integrations'],
     accent: 'brand-orange',
-    accentHex: '#F26622',
     icon: (
       <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
         <path strokeLinecap="round" strokeLinejoin="round" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
@@ -57,7 +56,6 @@ const disciplines = [
     desc: 'Information management systems for schools, NGOs, and enterprises — reducing manual overhead and surfacing the insights that matter.',
     tags: ['School Systems', 'Inventory', 'Dashboards', 'Data Migration'],
     accent: '[#0099cc]',
-    accentHex: '#0099cc',
     icon: (
       <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
         <path strokeLinecap="round" strokeLinejoin="round" d="M4 7v10c0 2 1 3 3 3h10c2 0 3-1 3-3V7c0-2-1-3-3-3H7C5 4 4 5 4 7z" />
@@ -73,7 +71,6 @@ const disciplines = [
     desc: 'Motion graphics, brand films, and visual effects crafted to communicate your story with cinematic precision and style.',
     tags: ['Motion Graphics', 'Visual Effects', 'Brand Films', 'Video Editing'],
     accent: 'brand-orange',
-    accentHex: '#F26622',
     icon: (
       <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
         <path strokeLinecap="round" strokeLinejoin="round" d="M15 10l4.553-2.069A1 1 0 0121 8.82v6.36a1 1 0 01-1.447.894L15 14M3 8a2 2 0 012-2h8a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2V8z" />
@@ -89,7 +86,6 @@ const teamPreview = [
     role: 'Lead Software Engineer',
     category: 'Software',
     accent: 'brand-orange',
-    accentHex: '#F26622',
     skills: ['React', 'Laravel', 'Node.js', 'PostgreSQL'],
     bio: 'Full-stack engineer building scalable web systems for startups and enterprises.',
   },
@@ -99,7 +95,6 @@ const teamPreview = [
     role: 'IMS Architect',
     category: 'IMS',
     accent: '[#0099cc]',
-    accentHex: '#0099cc',
     skills: ['MySQL', 'System Design', 'Data Modeling', 'Laravel'],
     bio: 'Database specialist designing information systems that reduce operational friction.',
   },
@@ -109,7 +104,6 @@ const teamPreview = [
     role: 'VFX Lead',
     category: 'VFX',
     accent: 'brand-orange',
-    accentHex: '#F26622',
     skills: ['After Effects', 'Premiere Pro', 'Motion Graphics', 'Color Grading'],
     bio: 'Motion designer and video editor with a sharp eye for brand storytelling.',
   },
@@ -184,8 +178,8 @@ export default function About() {
       {/* Our Identity — Mission & Vision */}
       <section className="relative section-padding overflow-hidden">
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff02_1px,transparent_1px),linear-gradient(to_bottom,#ffffff02_1px,transparent_1px)] bg-[size:60px_60px] pointer-events-none" />
-        <div className="absolute top-1/2 -translate-y-1/2 left-[-100px] w-[700px] h-[700px] bg-brand-orange/[0.05] rounded-full blur-[140px] pointer-events-none" />
-        <div className="absolute bottom-[-60px] right-[5%] w-[450px] h-[450px] bg-brand-blue/[0.06] rounded-full blur-[110px] pointer-events-none" />
+        <div className="absolute top-1/2 -translate-y-1/2 left-[-100px] w-[700px] h-[700px] bg-brand-orange/[0.04] rounded-full blur-[140px] pointer-events-none" />
+        <div className="absolute bottom-[-60px] right-[5%] w-[450px] h-[450px] bg-brand-blue/[0.05] rounded-full blur-[110px] pointer-events-none" />
         <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/[0.07] to-transparent" />
 
         <div className="container-max relative z-10">
@@ -196,68 +190,74 @@ export default function About() {
           </div>
 
           <div ref={storyRef} className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
-            <div className={`fade-up ${storyInView ? 'in-view' : ''} lg:col-span-6 relative text-center lg:text-left`}>
+
+            {/* Left */}
+            <div className={`fade-up ${storyInView ? 'in-view' : ''} lg:col-span-5 relative text-center lg:text-left`}>
               <span className="absolute -top-8 -left-4 font-fraunces text-[10rem] font-bold text-white/[0.02] leading-none select-none pointer-events-none hidden lg:block">01</span>
-              <p className="text-brand-orange text-xs font-medium tracking-[0.25em] uppercase mb-8">Who we are</p>
-              <h2 className="font-fraunces font-bold text-text-light leading-[1.05] tracking-tight mb-8">
-                <span className="block text-4xl sm:text-5xl lg:text-[3.5rem] xl:text-[4rem]">We don't just</span>
-                <span className="block text-4xl sm:text-5xl lg:text-[3.5rem] xl:text-[4rem] text-brand-orange">build products.</span>
-                <span className="block text-4xl sm:text-5xl lg:text-[3.5rem] xl:text-[4rem]">We build futures.</span>
+              <p className="text-brand-orange text-xs font-medium tracking-[0.25em] uppercase mb-6">Who we are</p>
+              <h2 className="font-fraunces font-bold text-text-light leading-[1.0] tracking-tight mb-6">
+                <span className="block text-4xl sm:text-5xl lg:text-[3.25rem] xl:text-[3.75rem]">We don't just</span>
+                <span className="block text-4xl sm:text-5xl lg:text-[3.25rem] xl:text-[3.75rem] text-brand-orange">write code.</span>
+                <span className="block text-4xl sm:text-5xl lg:text-[3.25rem] xl:text-[3.75rem]">We architect scale.</span>
               </h2>
-              <p className="text-text-muted text-base leading-[1.8] max-w-sm mb-6 mx-auto lg:mx-0">
-                One team. Three disciplines. Infinite possibilities — for organizations ready to grow.
+              <p className="text-text-muted text-sm leading-[1.85] max-w-xs mx-auto lg:mx-0 mb-8">
+                One team. Three disciplines. Built for organizations ready to grow.
               </p>
-              {/* Market context */}
               <div className="inline-flex items-center gap-2.5 px-4 py-2.5 rounded-xl bg-white/[0.03] border border-white/[0.07]">
-                <svg className="w-4 h-4 text-brand-orange flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+                <svg className="w-3.5 h-3.5 text-brand-orange flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                   <path strokeLinecap="round" strokeLinejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                 </svg>
-                <span className="text-text-muted text-xs leading-snug">Based in Africa — building for organizations across the continent and beyond.</span>
+                <span className="text-text-muted text-xs">Based in Africa — building beyond it.</span>
               </div>
             </div>
 
-            <div className="lg:col-span-6 relative flex flex-col gap-0 lg:pl-8">
-              {/* Mission */}
-              <div className={`fade-up delay-200 ${storyInView ? 'in-view' : ''} group relative rounded-2xl border border-brand-orange/25 bg-white/[0.04] backdrop-blur-md p-8 lg:p-10 overflow-hidden shadow-[0_0_60px_-10px_rgba(242,102,34,0.12)] transition-all duration-300 hover:shadow-[0_0_80px_-10px_rgba(242,102,34,0.22)] hover:-translate-y-1 z-10`}>
-                <div className="absolute -top-10 -right-10 w-48 h-48 bg-brand-orange/[0.08] rounded-full blur-[60px] pointer-events-none group-hover:bg-brand-orange/[0.14] transition-all duration-500" />
-                <div className="absolute bottom-0 left-0 w-3/4 h-px bg-gradient-to-r from-brand-orange/50 to-transparent" />
-                <div className="relative z-10">
+            {/* Right — Mission + Vision floating */}
+            <div className="lg:col-span-7 relative lg:pl-6 flex flex-col gap-4 lg:gap-0 lg:block lg:min-h-[420px]">
+
+              {/* Mission — base card */}
+              <div className={`fade-up delay-200 ${storyInView ? 'in-view' : ''} group relative rounded-2xl border border-brand-orange/25 bg-[#0d0d0d] overflow-hidden transition-all duration-500 hover:border-brand-orange/50 hover:shadow-[0_0_80px_-10px_rgba(242,102,34,0.28)] hover:-translate-y-1 lg:absolute lg:top-0 lg:left-6 lg:right-0 z-10`}>
+                <div className="absolute top-0 left-0 w-0 group-hover:w-full h-px bg-gradient-to-r from-brand-orange to-transparent transition-all duration-700" />
+                <div className="absolute bottom-0 left-0 w-3/4 h-px bg-gradient-to-r from-brand-orange/30 to-transparent" />
+                <div className="absolute -top-10 -right-10 w-48 h-48 bg-brand-orange/[0.06] rounded-full blur-[70px] pointer-events-none group-hover:bg-brand-orange/[0.12] transition-all duration-500" />
+                <div className="relative z-10 p-8 lg:p-10">
                   <div className="flex items-center gap-3 mb-6">
-                    <div className="w-9 h-9 rounded-xl bg-brand-orange/10 border border-brand-orange/25 flex items-center justify-center flex-shrink-0">
-                      <svg className="w-4 h-4 text-brand-orange" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+                    <div className="w-10 h-10 rounded-xl bg-brand-orange/10 border border-brand-orange/25 flex items-center justify-center flex-shrink-0 group-hover:bg-brand-orange/20 transition-colors duration-300">
+                      <svg className="w-5 h-5 text-brand-orange" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
                         <path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
                       </svg>
                     </div>
-                    <span className="text-brand-orange text-xs font-medium tracking-[0.2em] uppercase">Mission</span>
+                    <span className="text-brand-orange text-sm font-semibold tracking-[0.2em] uppercase">Mission</span>
                   </div>
-                  <h3 className="font-fraunces text-2xl font-bold text-text-light mb-3 leading-snug">What we're here to do</h3>
+                  <h3 className="font-fraunces text-2xl lg:text-3xl font-bold text-text-light mb-3 leading-snug">What we're here to do</h3>
                   <p className="text-text-muted text-sm leading-[1.85]">
-                    Deliver integrated digital solutions that empower organizations to operate smarter, look better, and grow faster.
+                    Deliver integrated digital solutions that help organizations operate smarter, look better, and grow faster.
                   </p>
                 </div>
               </div>
 
-              {/* Vision */}
-              <div className={`fade-up delay-300 ${storyInView ? 'in-view' : ''} group relative rounded-2xl border border-white/[0.08] bg-white/[0.03] backdrop-blur-md p-7 lg:p-8 overflow-hidden shadow-[0_0_50px_-10px_rgba(0,77,102,0.18)] transition-all duration-300 hover:shadow-[0_0_70px_-10px_rgba(0,153,204,0.2)] hover:-translate-y-1 lg:-mt-4 lg:ml-8 z-20`}>
-                <div className="absolute -bottom-8 -right-8 w-40 h-40 bg-brand-blue/[0.12] rounded-full blur-[55px] pointer-events-none group-hover:bg-brand-blue/[0.2] transition-all duration-500" />
-                <div className="absolute bottom-0 left-0 w-2/3 h-px bg-gradient-to-r from-[#0099cc]/40 to-transparent" />
-                <div className="relative z-10">
-                  <div className="flex items-center gap-3 mb-5">
-                    <div className="w-8 h-8 rounded-xl bg-brand-blue/20 border border-brand-blue/30 flex items-center justify-center flex-shrink-0">
-                      <svg className="w-4 h-4 text-[#0099cc]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+              {/* Vision — floats over, offset bottom-right */}
+              <div className={`fade-up delay-300 ${storyInView ? 'in-view' : ''} group relative rounded-2xl border border-[#0099cc]/25 bg-[#0c0c0c] overflow-hidden transition-all duration-500 hover:border-[#0099cc]/50 hover:shadow-[0_0_80px_-10px_rgba(0,153,204,0.25)] hover:-translate-y-1 lg:absolute lg:bottom-0 lg:left-16 lg:right-[-1.5rem] z-20`}>
+                <div className="absolute top-0 left-0 w-0 group-hover:w-full h-px bg-gradient-to-r from-[#0099cc] to-transparent transition-all duration-700" />
+                <div className="absolute bottom-0 left-0 w-2/3 h-px bg-gradient-to-r from-[#0099cc]/30 to-transparent" />
+                <div className="absolute -bottom-10 -right-10 w-44 h-44 bg-[#0099cc]/[0.06] rounded-full blur-[60px] pointer-events-none group-hover:bg-[#0099cc]/[0.12] transition-all duration-500" />
+                <div className="relative z-10 p-8 lg:p-10">
+                  <div className="flex items-center gap-3 mb-6">
+                    <div className="w-10 h-10 rounded-xl bg-[#0099cc]/10 border border-[#0099cc]/25 flex items-center justify-center flex-shrink-0 group-hover:bg-[#0099cc]/20 transition-colors duration-300">
+                      <svg className="w-5 h-5 text-[#0099cc]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
                         <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                         <path strokeLinecap="round" strokeLinejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
                       </svg>
                     </div>
-                    <span className="text-[#0099cc] text-xs font-medium tracking-[0.2em] uppercase">Vision</span>
+                    <span className="text-[#0099cc] text-sm font-semibold tracking-[0.2em] uppercase">Vision</span>
                   </div>
-                  <h3 className="font-fraunces text-xl font-bold text-text-light mb-3 leading-snug">Where we're headed</h3>
+                  <h3 className="font-fraunces text-2xl lg:text-3xl font-bold text-text-light mb-3 leading-snug">Where we're headed</h3>
                   <p className="text-text-muted text-sm leading-[1.85]">
                     To be the most trusted technology partner for growing organizations across Africa and beyond.
                   </p>
                 </div>
               </div>
+
             </div>
           </div>
         </div>
@@ -302,11 +302,8 @@ export default function About() {
 
             {/* Featured card — Software Engineering */}
             <div className={`fade-up delay-100 ${disciplinesInView ? 'in-view' : ''} lg:col-span-3 group relative rounded-2xl border border-brand-orange/20 bg-[#0c0c0c] overflow-hidden transition-all duration-500 hover:border-brand-orange/45 hover:shadow-[0_0_80px_-15px_rgba(242,102,34,0.3)]`}>
-              {/* top scan line on hover */}
               <div className="absolute top-0 left-0 w-0 group-hover:w-full h-px bg-gradient-to-r from-brand-orange/80 to-transparent transition-all duration-700" />
-              {/* corner accent */}
               <div className="absolute top-0 right-0 w-24 h-24 bg-brand-orange/[0.06] rounded-bl-full pointer-events-none group-hover:bg-brand-orange/[0.12] transition-all duration-500" />
-              {/* ambient glow */}
               <div className="absolute -bottom-16 -left-16 w-64 h-64 bg-brand-orange/[0.05] rounded-full blur-[80px] pointer-events-none group-hover:bg-brand-orange/[0.1] transition-all duration-500" />
 
               {/* SVG connection node — top right corner */}
@@ -732,7 +729,7 @@ export default function About() {
 
           {/* Cards */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-            {teamPreview.map(({ initials, name, role, category, accent, accentHex, skills, bio }, i) => {
+            {teamPreview.map(({ initials, name, role, category, accent, skills, bio }, i) => {
               const isOrange = accent === 'brand-orange';
               const accentText = isOrange ? 'text-brand-orange' : 'text-[#0099cc]';
               const borderBase = isOrange ? 'border-brand-orange/15' : 'border-[#0099cc]/15';
@@ -804,7 +801,7 @@ export default function About() {
           <div className={`fade-up delay-400 ${teamInView ? 'in-view' : ''} mt-5 rounded-2xl border border-white/[0.06] bg-white/[0.02] px-8 py-5 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left`}>
             <div className="flex items-center gap-3">
               <div className="flex -space-x-2">
-                {['AO','CE','TA'].map((init, i) => (
+                {['AO','CE','TA'].map((init) => (
                   <div key={init} className="w-8 h-8 rounded-full bg-gradient-to-br from-brand-orange/30 to-brand-blue/20 border-2 border-[#0b0b0b] flex items-center justify-center">
                     <span className="text-text-light font-fraunces font-bold text-[10px]">{init}</span>
                   </div>
