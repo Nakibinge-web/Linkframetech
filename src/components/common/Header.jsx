@@ -98,17 +98,13 @@ export default function Header() {
         </div>
       </header>
 
-      {/* Mobile dropdown menu */}
+      {/* Mobile dropdown menu — only in DOM when open */}
+      {menuOpen && (
       <div
-        className={`fixed top-[60px] left-0 right-0 z-40 md:hidden transition-all duration-300 ease-out px-4 pointer-events-none ${
-          menuOpen ? 'opacity-100' : 'opacity-0'
-        }`}
+        className="fixed top-[60px] left-0 right-0 z-40 md:hidden px-4"
       >
-        {/* Dropdown panel — slides down from navbar */}
-        <div
-          className={`relative w-full max-w-sm mx-auto bg-[#0d0d0d] border border-white/[0.07] rounded-2xl flex flex-col transition-all duration-300 ease-out transform shadow-2xl pointer-events-auto ${
-            menuOpen ? 'translate-y-0 opacity-100' : '-translate-y-4 opacity-0'
-          }`}
+        {/* Dropdown panel */}
+        <div className="relative w-full max-w-sm mx-auto bg-[#0d0d0d] border border-white/[0.07] rounded-2xl flex flex-col shadow-2xl"
         >
           {/* Drawer header */}
           <div className="flex items-center px-5 pt-5 pb-4 border-b border-white/[0.06]">
@@ -159,6 +155,7 @@ export default function Header() {
           </div>
         </div>
       </div>
+      )}
     </>
   );
 }

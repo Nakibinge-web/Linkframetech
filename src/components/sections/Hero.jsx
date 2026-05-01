@@ -116,7 +116,7 @@ export default function Hero() {
 
             <p className="hero-sub text-base sm:text-lg text-text-muted leading-relaxed max-w-lg mb-10 font-light">
               Custom software, intelligent management systems, and stunning visual media —
-              all crafted under one roof for organizations that refuse to settle.
+              all crafted under one roof for organizations.
             </p>
 
             <div className="hero-cta flex flex-col sm:flex-row flex-wrap gap-3 mb-16 justify-center lg:justify-start">
@@ -180,7 +180,7 @@ export default function Hero() {
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
               <div className="absolute bottom-3 left-3">
                 <span className="text-xs font-medium text-white/70 bg-black/40 backdrop-blur-sm px-2.5 py-1 rounded-full border border-white/10">
-                  IMS Solutions
+                  Infrastructure Management Solutions
                 </span>
               </div>
             </div>
@@ -195,7 +195,7 @@ export default function Hero() {
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
               <div className="absolute bottom-3 left-3">
                 <span className="text-xs font-medium text-white/70 bg-black/40 backdrop-blur-sm px-2.5 py-1 rounded-full border border-white/10">
-                  VFX & Media
+                  Visual Effects & Media
                 </span>
               </div>
             </div>
