@@ -69,7 +69,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8 pb-12 border-b border-white/[0.05]">
 
           {/* Brand col */}
-          <div className="sm:col-span-2 lg:col-span-5">
+          <div className="sm:col-span-2 lg:col-span-5 flex flex-col items-center lg:items-start text-center lg:text-left">
             <Link to="/" className="inline-flex items-center gap-2.5 mb-5 group">
               <div className="w-9 h-9 rounded-xl bg-brand-orange flex items-center justify-center shadow-[0_0_14px_rgba(242,102,34,0.35)] transition-shadow duration-300 group-hover:shadow-[0_0_22px_rgba(242,102,34,0.5)]">
                 <span className="font-fraunces font-bold text-white text-sm">LF</span>
@@ -80,7 +80,7 @@ export default function Footer() {
             </Link>
 
             <p className="text-text-muted text-sm leading-relaxed max-w-xs mb-6">
-              Integrating software, intelligent systems, and visual creativity — all under one roof for organizations that refuse to settle.
+              Integrating software, intelligent systems, and visual creativity — all under one roof for organizations.
             </p>
 
             {/* Social icons */}
@@ -104,9 +104,9 @@ export default function Footer() {
           <div className="hidden lg:block lg:col-span-1" />
 
           {/* Company links */}
-          <div className="lg:col-span-3">
+          <div className="lg:col-span-3 flex flex-col items-center lg:items-start text-center lg:text-left">
             <h4 className="text-text-light text-xs font-semibold uppercase tracking-widest mb-5">Company</h4>
-            <ul className="flex flex-col gap-3">
+            <ul className="flex flex-col gap-3 items-center lg:items-start">
               {company.map(({ label, path }) => (
                 <li key={label}>
                   <Link
@@ -122,9 +122,9 @@ export default function Footer() {
           </div>
 
           {/* Services links */}
-          <div className="lg:col-span-3">
+          <div className="lg:col-span-3 flex flex-col items-center lg:items-start text-center lg:text-left">
             <h4 className="text-text-light text-xs font-semibold uppercase tracking-widest mb-5">Services</h4>
-            <ul className="flex flex-col gap-3">
+            <ul className="flex flex-col gap-3 items-center lg:items-start">
               {services.map(({ label, path }) => (
                 <li key={label}>
                   <Link
@@ -139,15 +139,15 @@ export default function Footer() {
             </ul>
 
             {/* Contact info */}
-            <div className="mt-8 flex flex-col gap-2">
+            <div className="mt-8 flex flex-col gap-2 items-center lg:items-start">
               <a
-                href="mailto:hello@linkframe.tech"
+                href="mailto:linkframe.tech@outlook.com"
                 className="inline-flex items-center gap-2 text-text-muted text-xs hover:text-brand-orange transition-colors duration-200"
               >
                 <svg className="w-3.5 h-3.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
                 </svg>
-                hello@linkframe.tech
+                linkframe.tech@outlook.com
               </a>
               <a
                 href="https://wa.me/"
