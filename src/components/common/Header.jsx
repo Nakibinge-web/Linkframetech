@@ -7,6 +7,7 @@ const navLinks = [
   { label: 'Services', path: '/services' },
   { label: 'Portfolio', path: '/portfolio' },
   { label: 'Team', path: '/team' },
+  { label: 'Contact', path: '/contact' },
 ];
 
 const allLinks = [...navLinks, { label: 'Contact', path: '/contact' }];
