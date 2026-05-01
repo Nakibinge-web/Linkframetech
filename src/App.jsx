@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './components/common/Header';
 import Footer from './components/common/Footer';
 import PageTransition from './components/common/PageTransition';
+import BackToTop from './components/common/BackToTop';
 import Home from './pages/Home';
 import About from './pages/About';
 import Services from './pages/Services';
@@ -29,6 +30,7 @@ function App() {
           </PageTransition>
         </main>
         <Footer />
+        <BackToTop />
       </div>
     </Router>
   );
