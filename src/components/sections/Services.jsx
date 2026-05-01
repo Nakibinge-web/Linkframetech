@@ -1,6 +1,23 @@
-import React, { useState } from 'react';
+import { useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import useInView from '../../hooks/useInView';
+
+// Animated accordion body
+function AccordionBody({ open, children }) {
+  const ref = useRef(null);
+  return (
+    <div
+      ref={ref}
+      style={{
+        maxHeight: open ? (ref.current ? ref.current.scrollHeight + 'px' : '600px') : '0px',
+        overflow: 'hidden',
+        transition: 'max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+      }}
+    >
+      {children}
+    </div>
+  );
+}
 
 const services = [
   {
@@ -10,25 +27,25 @@ const services = [
     tagline: 'Custom systems built to last.',
     description:
       'We design and develop web applications, internal tools, and scalable APIs tailored to your exact workflow — not off-the-shelf templates.',
-    tags: ['Web Apps', 'REST APIs', 'System Architecture', 'Integrations'],
+    tags: ['Web Apps', 'REST APIs', 'Software development', 'Database Administration'],
     image: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800&q=80',
     accent: '#F26622',
   },
   {
     id: 'ims',
     number: '02',
-    title: 'IMS Solutions',
+    title: 'Infrastructure Management Solutions',
     tagline: 'Smarter data, better decisions.',
     description:
-      'Information management systems for schools, NGOs, and enterprises. We design databases and workflows that reduce manual work and surface the insights you need.',
-    tags: ['School Systems', 'Inventory', 'Dashboards', 'Data Migration'],
+      'Infrastructure management systems for schools, NGOs, and enterprises. We aim at designing, deploying, and managing the systems that keep businesses running—networks, servers, cloud platforms, and security frameworks.',
+    tags: ['Cloud deployment', 'Server installation and management', 'Network Installation', 'Cyber security'],
     image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80',
     accent: '#004D66',
   },
   {
     id: 'vfx',
     number: '03',
-    title: 'VFX & Media',
+    title: 'Visual Effects & Media',
     tagline: 'Visuals that move people.',
     description:
       'From brand films to motion graphics, we craft visual content that communicates your story with precision and style.',
@@ -40,66 +57,31 @@ const services = [
 
 export default function ServicesSection() {
   const [active, setActive] = useState('software');
+  const [mobileOpen, setMobileOpen] = useState('software');
   const [ref, inView] = useInView();
   const current = services.find((s) => s.id === active);
+
+  const toggleMobile = (id) => setMobileOpen(mobileOpen === id ? null : id);
 
   return (
     <section className="section-padding bg-[#080808]">
       <div className="container-max">
         {/* Header */}
-        <div ref={ref} className={`fade-up ${inView ? 'in-view' : ''} mb-16 text-center lg:text-left mx-auto lg:mx-0`}>
+        <div ref={ref} className={`fade-up ${inView ? 'in-view' : ''} mb-16`}>
           <p className="text-brand-orange text-xs font-medium uppercase tracking-widest mb-3">What We Do</p>
           <h2 className="font-fraunces text-4xl sm:text-5xl font-bold text-text-light leading-tight">
             Three disciplines,<br />one team.
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-5 gap-0 border border-white/[0.07] rounded-2xl overflow-hidden">
-          {/* Panel - shown first on mobile */}
-          <div className="lg:col-span-3 lg:order-2 flex flex-col min-h-[360px] border-b lg:border-b-0 border-white/[0.07]">
-            {/* Image */}
-            <div className="relative h-48 overflow-hidden border-b border-white/[0.07]">
-              <img
-                key={current.id}
-                src={current.image}
-                alt={current.title}
-                className="w-full h-full object-cover transition-all duration-700"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#0d0d0d] via-black/30 to-transparent" />
-              <div className="absolute bottom-4 left-8">
-                <p className="font-fraunces text-xl font-bold text-white">{current.title}</p>
-              </div>
-            </div>
-            <div className="p-8 lg:p-10 flex flex-col justify-between flex-1 text-center lg:text-left">
-              <div key={current.id + '-content'}>
-                <p className="text-text-muted text-sm leading-relaxed mb-6 mx-auto lg:mx-0">{current.description}</p>
-                <div className="flex flex-wrap gap-2 mb-8 justify-center lg:justify-start">
-                  {current.tags.map((tag) => (
-                    <span key={tag} className="text-xs px-3 py-1.5 rounded-full border border-white/10 text-text-muted hover:border-brand-orange/40 hover:text-text-light transition-all duration-200">
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              </div>
-              <Link
-                to="/services"
-                className="group inline-flex items-center gap-2 text-brand-orange text-sm font-medium mx-auto lg:mx-0"
-              >
-                Explore this service
-                <svg className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                </svg>
-              </Link>
-            </div>
-          </div>
-
-          {/* Tab list - shown second on mobile */}
-          <div className="lg:col-span-2 lg:order-1 lg:border-r border-white/[0.07]">
+        {/* ── Desktop layout (lg+): tab + panel side by side ── */}
+        <div className="hidden lg:grid grid-cols-5 gap-0 border border-white/[0.07] rounded-2xl overflow-hidden">
+          {/* Tab list */}
+          <div className="col-span-2 border-r border-white/[0.07]">
             {services.map((s) => (
               <button
                 key={s.id}
-                type="button"
-                onClick={(e) => { e.stopPropagation(); setActive(s.id); }}
+                onClick={() => setActive(s.id)}
                 className={`w-full text-left px-8 py-7 border-b border-white/[0.05] last:border-b-0 transition-all duration-300 group ${
                   active === s.id ? 'bg-white/[0.04]' : 'hover:bg-white/[0.02]'
                 }`}
@@ -121,7 +103,109 @@ export default function ServicesSection() {
               </button>
             ))}
           </div>
+
+          {/* Panel */}
+          <div className="col-span-3 flex flex-col min-h-[360px]">
+            <div className="relative h-48 overflow-hidden border-b border-white/[0.07]">
+              <img
+                key={current.id}
+                src={current.image}
+                alt={current.title}
+                className="w-full h-full object-cover transition-all duration-700"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#0d0d0d] via-black/30 to-transparent" />
+              <div className="absolute bottom-4 left-8">
+                <p className="font-fraunces text-xl font-bold text-white">{current.title}</p>
+              </div>
+            </div>
+            <div className="p-10 flex flex-col justify-between flex-1">
+              <div key={current.id + '-content'}>
+                <p className="text-text-muted text-sm leading-relaxed mb-6">{current.description}</p>
+                <div className="flex flex-wrap gap-2 mb-8">
+                  {current.tags.map((tag) => (
+                    <span key={tag} className="text-xs px-3 py-1.5 rounded-full border border-white/10 text-text-muted hover:border-brand-orange/40 hover:text-text-light transition-all duration-200">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
+              <Link
+                to="/services"
+                className="group inline-flex items-center gap-2 text-brand-orange text-sm font-medium"
+              >
+                Explore this service
+                <svg className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </Link>
+            </div>
+          </div>
         </div>
+
+        {/* ── Mobile layout: accordion ── */}
+        <div className="lg:hidden flex flex-col gap-3">
+          {services.map((s) => {
+            const open = mobileOpen === s.id;
+            return (
+              <div key={s.id} className="rounded-2xl border border-white/[0.08] bg-white/[0.02]">
+                {/* Accordion header */}
+                <button
+                  type="button"
+                  onClick={() => setMobileOpen(open ? null : s.id)}
+                  className="w-full text-left px-5 py-5 flex items-center gap-4"
+                >
+                  <span className={`font-fraunces text-xs font-bold shrink-0 ${open ? 'text-brand-orange' : 'text-white/25'}`}>
+                    {s.number}
+                  </span>
+                  <div className="flex-1 min-w-0 text-center">
+                    <p className={`font-semibold text-sm ${open ? 'text-text-light' : 'text-text-muted'}`}>
+                      {s.title}
+                    </p>
+                    <p className={`text-xs mt-0.5 ${open ? 'text-brand-orange' : 'text-white/20'}`}>
+                      {s.tagline}
+                    </p>
+                  </div>
+                  <svg
+                    className={`w-4 h-4 shrink-0 text-text-muted transition-transform duration-300 ${open ? 'rotate-180' : ''}`}
+                    fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+                  </svg>
+                </button>
+
+                {/* Accordion body — animated */}
+                <AccordionBody open={open}>
+                  <div className="border-t border-white/[0.06]">
+                    <div className="relative h-44 overflow-hidden">
+                      <img src={s.image} alt={s.title} className="w-full h-full object-cover" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#0d0d0d] via-black/20 to-transparent" />
+                    </div>
+                    <div className="px-5 py-5 text-center">
+                      <p className="text-text-muted text-sm leading-relaxed mb-4">{s.description}</p>
+                      <div className="flex flex-wrap gap-2 mb-5 justify-center">
+                        {s.tags.map((tag) => (
+                          <span key={tag} className="text-xs px-3 py-1.5 rounded-full border border-white/10 text-text-muted">
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                      <Link
+                        to="/services"
+                        className="inline-flex items-center gap-2 text-brand-orange text-sm font-medium"
+                      >
+                        Explore this service
+                        <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                        </svg>
+                      </Link>
+                    </div>
+                  </div>
+                </AccordionBody>
+              </div>
+            );
+          })}
+        </div>
+
       </div>
     </section>
   );
