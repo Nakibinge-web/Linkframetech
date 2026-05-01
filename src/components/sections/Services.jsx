@@ -55,36 +55,8 @@ export default function ServicesSection() {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-0 border border-white/[0.07] rounded-2xl overflow-hidden">
-          {/* Tab list */}
-          <div className="lg:col-span-2 border-b lg:border-b-0 lg:border-r border-white/[0.07]">
-            {services.map((s) => (
-              <button
-                key={s.id}
-                onClick={() => setActive(s.id)}
-                className={`w-full text-left px-8 py-7 border-b border-white/[0.05] last:border-b-0 transition-all duration-300 group ${
-                  active === s.id ? 'bg-white/[0.04]' : 'hover:bg-white/[0.02]'
-                }`}
-              >
-                <div className="flex items-start gap-4">
-                  <span className={`font-fraunces text-xs font-bold mt-1 transition-colors duration-300 ${active === s.id ? 'text-brand-orange' : 'text-white/20 group-hover:text-white/40'}`}>
-                    {s.number}
-                  </span>
-                  <div>
-                    <p className={`font-semibold text-sm transition-colors duration-300 ${active === s.id ? 'text-text-light' : 'text-text-muted group-hover:text-text-light'}`}>
-                      {s.title}
-                    </p>
-                    <p className={`text-xs mt-1 transition-colors duration-300 ${active === s.id ? 'text-brand-orange' : 'text-white/20'}`}>
-                      {s.tagline}
-                    </p>
-                  </div>
-                  <div className={`ml-auto w-1 self-stretch rounded-full transition-all duration-300 ${active === s.id ? 'bg-brand-orange' : 'bg-transparent'}`} />
-                </div>
-              </button>
-            ))}
-          </div>
-
-          {/* Panel */}
-          <div className="lg:col-span-3 flex flex-col min-h-[360px]">
+          {/* Panel - shown first on mobile */}
+          <div className="lg:col-span-3 lg:order-2 flex flex-col min-h-[360px] border-b lg:border-b-0 border-white/[0.07]">
             {/* Image */}
             <div className="relative h-48 overflow-hidden border-b border-white/[0.07]">
               <img
@@ -119,6 +91,35 @@ export default function ServicesSection() {
                 </svg>
               </Link>
             </div>
+          </div>
+
+          {/* Tab list - shown second on mobile */}
+          <div className="lg:col-span-2 lg:order-1 lg:border-r border-white/[0.07]">
+            {services.map((s) => (
+              <button
+                key={s.id}
+                type="button"
+                onClick={(e) => { e.stopPropagation(); setActive(s.id); }}
+                className={`w-full text-left px-8 py-7 border-b border-white/[0.05] last:border-b-0 transition-all duration-300 group ${
+                  active === s.id ? 'bg-white/[0.04]' : 'hover:bg-white/[0.02]'
+                }`}
+              >
+                <div className="flex items-start gap-4">
+                  <span className={`font-fraunces text-xs font-bold mt-1 transition-colors duration-300 ${active === s.id ? 'text-brand-orange' : 'text-white/20 group-hover:text-white/40'}`}>
+                    {s.number}
+                  </span>
+                  <div>
+                    <p className={`font-semibold text-sm transition-colors duration-300 ${active === s.id ? 'text-text-light' : 'text-text-muted group-hover:text-text-light'}`}>
+                      {s.title}
+                    </p>
+                    <p className={`text-xs mt-1 transition-colors duration-300 ${active === s.id ? 'text-brand-orange' : 'text-white/20'}`}>
+                      {s.tagline}
+                    </p>
+                  </div>
+                  <div className={`ml-auto w-1 self-stretch rounded-full transition-all duration-300 ${active === s.id ? 'bg-brand-orange' : 'bg-transparent'}`} />
+                </div>
+              </button>
+            ))}
           </div>
         </div>
       </div>
