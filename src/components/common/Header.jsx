@@ -103,8 +103,8 @@ export default function Header() {
       >
         {/* Backdrop */}
         <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={() => setMenuOpen(false)} />
-        
-        {/* Dropdown panel — slides from top with unique animation */}
+
+        {/* Dropdown panel — slides from top */}
         <div
           className={`relative w-full bg-[#0d0d0d]/95 backdrop-blur-xl border-b border-white/[0.07] flex flex-col transition-all duration-700 ease-out transform shadow-2xl ${
             menuOpen ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0'
