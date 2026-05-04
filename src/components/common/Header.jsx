@@ -11,7 +11,7 @@ const navLinks = [
   { label: 'Contact', path: '/contact' },
 ];
 
-const allLinks = [...navLinks, { label: 'Contact', path: '/contact' }];
+const allLinks = navLinks;
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
@@ -56,14 +56,11 @@ export default function Header() {
                     to={path}
                     className={`relative px-6 py-2 rounded-xl text-sm font-medium transition-all duration-200 whitespace-nowrap ${
                       active
-                        ? 'text-white bg-white/[0.09] shadow-sm'
+                        ? 'text-brand-orange bg-brand-orange/[0.08]'
                         : 'text-text-muted hover:text-text-light hover:bg-white/[0.05]'
                     }`}
                   >
-                    {active && (
-                      <span className="absolute left-3 top-1/2 -translate-y-1/2 w-1 h-1 rounded-full bg-brand-orange" />
-                    )}
-                    <span className={active ? 'pl-2' : ''}>{label}</span>
+                    <span>{label}</span>
                   </Link>
                 );
               })}
@@ -120,9 +117,9 @@ export default function Header() {
                 <Link
                   key={path}
                   to={path}
-                  className={`flex items-center gap-2.5 px-3 py-2.5 rounded-xl text-xs font-medium transition-all duration-300 transform ${
+                  className={`flex items-center px-3 py-2.5 rounded-xl text-xs font-medium transition-all duration-300 transform ${
                     active
-                      ? 'text-white bg-white/[0.07] border border-white/[0.08]'
+                      ? 'text-brand-orange bg-brand-orange/[0.08] border border-brand-orange/20'
                       : 'text-text-muted hover:text-text-light hover:bg-white/[0.04] hover:scale-105'
                   } ${menuOpen ? 'translate-x-0 opacity-100' : 'translate-x-8 opacity-0'}`}
                   style={{ 
@@ -131,7 +128,6 @@ export default function Header() {
                   }}
                   onClick={() => setMenuOpen(false)}
                 >
-                  {active && <span className="w-1 h-1 rounded-full bg-brand-orange shrink-0" />}
                   <span>{label}</span>
                 </Link>
               );
