@@ -56,7 +56,7 @@ export default function Header() {
                     to={path}
                     className={`relative px-6 py-2 rounded-xl text-sm font-medium transition-all duration-200 whitespace-nowrap ${
                       active
-                        ? 'text-brand-orange bg-brand-orange/[0.08]'
+                        ? 'text-brand-orange'
                         : 'text-text-muted hover:text-text-light hover:bg-white/[0.05]'
                     }`}
                   >
@@ -119,7 +119,7 @@ export default function Header() {
                   to={path}
                   className={`flex items-center px-3 py-2.5 rounded-xl text-xs font-medium transition-all duration-300 transform ${
                     active
-                      ? 'text-brand-orange bg-brand-orange/[0.08] border border-brand-orange/20'
+                      ? 'text-brand-orange'
                       : 'text-text-muted hover:text-text-light hover:bg-white/[0.04] hover:scale-105'
                   } ${menuOpen ? 'translate-x-0 opacity-100' : 'translate-x-8 opacity-0'}`}
                   style={{ 
