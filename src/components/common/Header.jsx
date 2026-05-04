@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import Logo from './Logo';
 
 const navLinks = [
   { label: 'Home', path: '/' },
@@ -7,7 +8,6 @@ const navLinks = [
   { label: 'Services', path: '/services' },
   { label: 'Portfolio', path: '/portfolio' },
   { label: 'Team', path: '/team' },
-  { label: 'Contact', path: '/contact' },
 ];
 
 const allLinks = [...navLinks, { label: 'Contact', path: '/contact' }];
@@ -39,10 +39,7 @@ export default function Header() {
 
             {/* Logo — left */}
             <Link to="/" className="md:ml-[90px] flex items-center gap-2.5 group md:justify-self-start">
-              <div className="relative w-8 h-8 rounded-lg bg-brand-orange flex items-center justify-center overflow-hidden shadow-[0_0_12px_rgba(242,102,34,0.4)]">
-                <span className="font-fraunces font-bold text-white text-xs relative z-10 tracking-tight">LF</span>
-                <div className="absolute inset-0 bg-gradient-to-br from-[#ff9a5c] to-brand-orange opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              </div>
+              <Logo className="w-8 h-8 transition-transform duration-300 group-hover:scale-110" />
               <span className="font-fraunces font-semibold text-text-light text-base tracking-tight">
                 Linkframe<span className="text-brand-orange">.</span>
               </span>
@@ -85,77 +82,82 @@ export default function Header() {
 
               {/* Mobile hamburger */}
               <button
-                className="md:hidden relative w-9 h-9 flex items-center justify-center rounded-xl border border-white/[0.08] bg-white/[0.04] hover:bg-white/[0.07] transition-colors duration-200"
+                className="md:hidden relative w-9 h-9 flex items-center justify-center transition-colors duration-200"
                 onClick={() => setMenuOpen(!menuOpen)}
                 aria-label="Toggle menu"
               >
-                <span className={`absolute block h-[1.5px] bg-text-light rounded-full transition-all duration-300 origin-center ${menuOpen ? 'rotate-45' : '-translate-y-[5px]'}`} style={{ width: '18px' }} />
-                <span className={`absolute block h-[1.5px] bg-text-light rounded-full transition-all duration-300 ${menuOpen ? 'opacity-0 scale-x-0' : ''}`} style={{ width: '18px' }} />
-                <span className={`absolute block h-[1.5px] bg-text-light rounded-full transition-all duration-300 origin-center ${menuOpen ? '-rotate-45' : 'translate-y-[5px]'}`} style={{ width: '18px' }} />
+                <span className={`absolute block h-[1.5px] bg-text-light transition-all duration-300 origin-center ${menuOpen ? 'rotate-45' : '-translate-y-[5px]'}`} style={{ width: '18px' }} />
+                <span className={`absolute block h-[1.5px] bg-text-light transition-all duration-300 ${menuOpen ? 'opacity-0 scale-x-0' : ''}`} style={{ width: '18px' }} />
+                <span className={`absolute block h-[1.5px] bg-text-light transition-all duration-300 origin-center ${menuOpen ? '-rotate-45' : 'translate-y-[5px]'}`} style={{ width: '18px' }} />
               </button>
             </div>
           </div>
         </div>
       </header>
 
-      {/* Mobile dropdown menu — only in DOM when open */}
-      {menuOpen && (
+      {/* Mobile dropdown menu */}
       <div
-        className="fixed top-[60px] left-0 right-0 z-40 md:hidden px-4"
+        className={`fixed top-0 left-0 right-0 bottom-0 z-40 md:hidden transition-all duration-500 ease-out ${
+          menuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
+        }`}
       >
-        {/* Dropdown panel */}
-        <div className="relative w-full max-w-sm mx-auto bg-[#0d0d0d] border border-white/[0.07] rounded-2xl flex flex-col shadow-2xl"
+        {/* Backdrop */}
+        <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={() => setMenuOpen(false)} />
+        
+        {/* Dropdown panel — slides from top with unique animation */}
+        <div
+          className={`relative w-full bg-[#0d0d0d]/95 backdrop-blur-xl border-b border-white/[0.07] flex flex-col transition-all duration-700 ease-out transform shadow-2xl ${
+            menuOpen ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0'
+          }`}
         >
-          {/* Drawer header */}
-          <div className="flex items-center px-5 pt-5 pb-4 border-b border-white/[0.06]">
-            <Link to="/" className="flex items-center gap-2" onClick={() => setMenuOpen(false)}>
-              <div className="w-6 h-6 rounded-lg bg-brand-orange flex items-center justify-center">
-                <span className="font-fraunces font-bold text-white text-[10px]">LF</span>
-              </div>
-              <span className="font-fraunces font-semibold text-text-light text-xs tracking-tight">
-                Linkframe<span className="text-brand-orange">.</span>
-              </span>
-            </Link>
-          </div>
-
-          {/* Nav links */}
-          <nav className="flex flex-col gap-1 px-3 py-5">
+          {/* Nav links - no header with logo */}
+          <nav className="flex flex-col gap-1 px-6 py-8 pt-20">
             {allLinks.map(({ label, path }, i) => {
               const active = location.pathname === path;
               return (
                 <Link
                   key={path}
                   to={path}
-                  className={`flex items-center gap-2.5 px-3 py-2.5 rounded-xl text-xs font-medium transition-all duration-200 ${
+                  className={`flex items-center gap-2.5 px-3 py-2.5 rounded-xl text-xs font-medium transition-all duration-300 transform ${
                     active
                       ? 'text-white bg-white/[0.07] border border-white/[0.08]'
-                      : 'text-text-muted hover:text-text-light hover:bg-white/[0.04]'
-                  }`}
-                  style={{ transitionDelay: menuOpen ? `${i * 40}ms` : '0ms' }}
+                      : 'text-text-muted hover:text-text-light hover:bg-white/[0.04] hover:scale-105'
+                  } ${menuOpen ? 'translate-x-0 opacity-100' : 'translate-x-8 opacity-0'}`}
+                  style={{ 
+                    transitionDelay: menuOpen ? `${(i + 1) * 100}ms` : '0ms',
+                    animationDelay: menuOpen ? `${(i + 1) * 100}ms` : '0ms'
+                  }}
+                  onClick={() => setMenuOpen(false)}
                 >
                   {active && <span className="w-1 h-1 rounded-full bg-brand-orange shrink-0" />}
-                  {label}
+                  <span>{label}</span>
                 </Link>
               );
             })}
           </nav>
 
-          {/* Drawer footer CTA */}
-          <div className="px-3 pb-6 pt-3 border-t border-white/[0.06]">
+          {/* Footer CTA */}
+          <div className={`px-6 pb-8 transition-all duration-500 transform ${
+            menuOpen ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'
+          }`} style={{ transitionDelay: menuOpen ? '600ms' : '0ms' }}>
             <Link
               to="/contact"
-              className="flex items-center justify-center gap-2 w-full bg-brand-orange text-white text-xs font-medium py-3 rounded-xl transition-all duration-300 hover:shadow-[0_0_20px_rgba(242,102,34,0.35)] active:scale-[0.98]"
+              className="flex items-center justify-center gap-2 w-full bg-brand-orange text-white text-xs font-medium py-3 rounded-xl transition-all duration-300 hover:shadow-[0_0_20px_rgba(242,102,34,0.35)] active:scale-[0.98] group"
+              onClick={() => setMenuOpen(false)}
             >
               Start a Project
-              <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <svg className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
               </svg>
             </Link>
-            <p className="text-center text-text-muted text-[10px] mt-2.5">hello@linkframe.tech</p>
+            <p className={`text-center text-text-muted text-[10px] mt-2.5 transition-all duration-300 ${
+              menuOpen ? 'opacity-100' : 'opacity-0'
+            }`} style={{ transitionDelay: menuOpen ? '800ms' : '0ms' }}>
+              hello@linkframe.tech
+            </p>
           </div>
         </div>
       </div>
-      )}
     </>
   );
 }
