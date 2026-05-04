@@ -1,24 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 
-const heroImages = [
-  {
-    src: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&q=80',
-    alt: 'Developer coding',
-    className: 'col-span-2 row-span-2',
-  },
-  {
-    src: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&q=80',
-    alt: 'Data dashboard',
-    className: 'col-span-1 row-span-1',
-  },
-  {
-    src: 'https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=400&q=80',
-    alt: 'Video production',
-    className: 'col-span-1 row-span-1',
-  },
-];
-
 export default function Hero() {
   const canvasRef = useRef(null);
 
@@ -32,21 +14,20 @@ export default function Hero() {
     const resize = () => {
       w = canvas.width = canvas.offsetWidth;
       h = canvas.height = canvas.offsetHeight;
-      dots = Array.from({ length: 50 }, () => ({
+      dots = Array.from({ length: 40 }, () => ({
         x: Math.random() * w,
         y: Math.random() * h,
-        r: Math.random() * 1 + 0.3,
-        vx: (Math.random() - 0.5) * 0.25,
-        vy: (Math.random() - 0.5) * 0.25,
-        alpha: Math.random() * 0.35 + 0.08,
+        r: Math.random() * 0.8 + 0.2,
+        vx: (Math.random() - 0.5) * 0.15,
+        vy: (Math.random() - 0.5) * 0.15,
+        alpha: Math.random() * 0.18 + 0.04,
       }));
     };
 
     const draw = () => {
       ctx.clearRect(0, 0, w, h);
       dots.forEach((d) => {
-        d.x += d.vx;
-        d.y += d.vy;
+        d.x += d.vx; d.y += d.vy;
         if (d.x < 0 || d.x > w) d.vx *= -1;
         if (d.y < 0 || d.y > h) d.vy *= -1;
         ctx.beginPath();
@@ -57,12 +38,12 @@ export default function Hero() {
       dots.forEach((a, i) => {
         dots.slice(i + 1).forEach((b) => {
           const dist = Math.hypot(a.x - b.x, a.y - b.y);
-          if (dist < 110) {
+          if (dist < 100) {
             ctx.beginPath();
             ctx.moveTo(a.x, a.y);
             ctx.lineTo(b.x, b.y);
-            ctx.strokeStyle = `rgba(242,102,34,${0.05 * (1 - dist / 110)})`;
-            ctx.lineWidth = 0.5;
+            ctx.strokeStyle = `rgba(242,102,34,${0.025 * (1 - dist / 100)})`;
+            ctx.lineWidth = 0.4;
             ctx.stroke();
           }
         });
@@ -73,138 +54,138 @@ export default function Hero() {
     resize();
     draw();
     window.addEventListener('resize', resize);
-    return () => {
-      cancelAnimationFrame(animId);
-      window.removeEventListener('resize', resize);
-    };
+    return () => { cancelAnimationFrame(animId); window.removeEventListener('resize', resize); };
   }, []);
 
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden bg-[#080808]">
-      <canvas ref={canvasRef} className="absolute inset-0 w-full h-full pointer-events-none" />
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff04_1px,transparent_1px),linear-gradient(to_bottom,#ffffff04_1px,transparent_1px)] bg-[size:80px_80px]" />
-      <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-[700px] h-[500px] bg-brand-orange/[0.04] rounded-full blur-[140px] pointer-events-none" />
-      <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-[#004D66]/[0.08] rounded-full blur-[100px] pointer-events-none" />
+    <section className="relative min-h-screen flex flex-col overflow-hidden bg-[#060606]">
 
-      <div className="container-max section-padding relative z-10 pt-[90px] pb-20">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+      {/* Background image */}
+      <div className="absolute inset-0">
+        <img
+          src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=1800&q=80"
+          alt=""
+          className="w-full h-full object-cover opacity-[0.32]"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#060606]/70 via-[#060606]/30 to-[#060606]" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#060606]/80 via-transparent to-[#060606]/50" />
+      </div>
 
-          {/* Left — text */}
-          <div className="flex flex-col items-center lg:items-start text-center lg:text-left">
-            <div className="hero-badge inline-flex items-center gap-2.5 border border-brand-orange/25 bg-brand-orange/[0.06] rounded-full px-4 py-2 mb-8">
+      {/* Particle canvas */}
+      <canvas ref={canvasRef} className="absolute inset-0 w-full h-full pointer-events-none z-10" />
+
+      {/* Grid */}
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff02_1px,transparent_1px),linear-gradient(to_bottom,#ffffff02_1px,transparent_1px)] bg-[size:80px_80px] z-10" />
+
+      {/* Glows */}
+      <div className="absolute top-1/3 left-1/4 w-[700px] h-[500px] bg-brand-orange/[0.04] rounded-full blur-[180px] pointer-events-none z-10" />
+      <div className="absolute bottom-1/3 right-1/4 w-[500px] h-[400px] bg-[#0099cc]/[0.04] rounded-full blur-[150px] pointer-events-none z-10" />
+
+      {/* Top edge */}
+      <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/[0.08] to-transparent z-20" />
+
+      {/* Corner brackets */}
+      <div className="absolute top-24 left-8 lg:left-16 z-20 hidden lg:block opacity-40">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+          <path d="M0 32V0h32" stroke="#F26622" strokeWidth="1" />
+        </svg>
+      </div>
+      <div className="absolute bottom-28 right-8 lg:right-16 z-20 hidden lg:block opacity-30">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+          <path d="M32 0v32H0" stroke="#F26622" strokeWidth="1" />
+        </svg>
+      </div>
+
+      {/* Content */}
+      <div className="container-max section-padding relative z-20 flex flex-col flex-1 pt-32 pb-16 w-full">
+
+        {/* Top — badge + sub copy side by side on desktop */}
+        <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6 mb-auto">
+          {/* Badge */}
+          <div className="flex justify-center lg:justify-start">
+            <div className="inline-flex items-center gap-3 border border-white/[0.08] bg-white/[0.03] backdrop-blur-sm rounded-full px-5 py-2.5">
               <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-orange opacity-75" />
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-orange opacity-60" />
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-brand-orange" />
               </span>
-              <span className="text-brand-orange text-xs font-medium tracking-widest uppercase">
-                Software · IMS · VFX
-              </span>
+              <span className="text-text-muted text-xs font-medium tracking-[0.2em] uppercase">Software · IMS · VFX</span>
             </div>
+          </div>
 
-            <h1 className="hero-title font-fraunces text-5xl sm:text-6xl lg:text-[68px] font-bold leading-[1.05] tracking-tight text-text-light mb-6">
-              We Build<br />
-              Digital{' '}
-              <span className="relative inline-block">
-                <span className="bg-gradient-to-r from-brand-orange via-[#ff8c42] to-brand-orange bg-clip-text text-transparent">
-                  Experiences
-                </span>
-                <span className="absolute -bottom-1 left-0 right-0 h-px bg-gradient-to-r from-brand-orange/0 via-brand-orange/50 to-brand-orange/0" />
-              </span>
-              <br />
-              That Last.
-            </h1>
+          {/* Sub copy — top right on desktop */}
+          <p className="text-text-muted text-sm leading-[1.8] max-w-xs text-center lg:text-right hidden lg:block">
+            One team. Three disciplines.<br />Built for organizations that refuse to settle.
+          </p>
+        </div>
 
-            <p className="hero-sub text-base sm:text-lg text-text-muted leading-relaxed max-w-lg mb-10 font-light">
-              Custom software, intelligent management systems, and stunning visual media —
-              all crafted under one roof for organizations.
-            </p>
+        {/* Centre — main headline */}
+        <div className="flex-1 flex flex-col justify-center py-12 lg:py-16">
+          <h1 className="hero-title font-fraunces font-bold text-text-light leading-[0.92] tracking-tight text-center lg:text-left">
+            <span className="block text-[clamp(3.5rem,9vw,8rem)]">Engineering.</span>
+            <span className="block text-[clamp(3.5rem,9vw,8rem)] text-brand-orange lg:pl-[5vw]">Systems.</span>
+            <span className="block text-[clamp(3.5rem,9vw,8rem)] text-text-light/35 lg:pl-[10vw]">Visuals.</span>
+          </h1>
+        </div>
 
-            <div className="hero-cta flex flex-col sm:flex-row flex-wrap gap-3 mb-16 justify-center lg:justify-start">
-              <Link
-                to="/contact"
-                className="group relative inline-flex items-center justify-center gap-2 bg-brand-orange text-white px-6 py-3.5 rounded-xl font-medium text-sm overflow-hidden transition-all duration-300 hover:shadow-[0_0_28px_rgba(242,102,34,0.45)] hover:scale-[1.02]"
+        {/* Bottom row */}
+        <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8 pt-8 border-t border-white/[0.06]">
+
+          {/* Discipline pills */}
+          <div className="flex flex-wrap gap-2 justify-center lg:justify-start">
+            {[
+              { label: 'Software Engineering', isOrange: true },
+              { label: 'IMS Solutions', isOrange: false },
+              { label: 'VFX & Media', isOrange: true },
+            ].map(({ label, isOrange }) => (
+              <div
+                key={label}
+                className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-lg border bg-white/[0.02] ${isOrange ? 'border-brand-orange/20' : 'border-[#0099cc]/20'}`}
               >
-                <span className="relative z-10">Start a Project</span>
-                <svg className="relative z-10 w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                </svg>
-                <div className="absolute inset-0 bg-gradient-to-r from-brand-orange to-[#ff7a2e] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              </Link>
-              <Link
-                to="/portfolio"
-                className="inline-flex items-center justify-center gap-2 border border-white/10 text-text-light px-6 py-3.5 rounded-xl font-medium text-sm transition-all duration-300 hover:border-white/20 hover:bg-white/[0.04]"
-              >
-                View Our Work
-              </Link>
-            </div>
+                <span className={`w-1 h-1 rounded-full ${isOrange ? 'bg-brand-orange' : 'bg-[#0099cc]'}`} />
+                <span className={`text-[10px] font-mono tracking-widest uppercase ${isOrange ? 'text-brand-orange' : 'text-[#0099cc]'}`}>{label}</span>
+              </div>
+            ))}
+          </div>
 
-            <div className="hero-stats flex flex-wrap gap-8 pt-8 border-t border-white/[0.06] justify-center lg:justify-start">
+          {/* Right — stats + CTA */}
+          <div className="flex flex-col sm:flex-row items-center gap-8 justify-center lg:justify-end">
+            {/* Stats */}
+            <div className="flex gap-8">
               {[
                 { value: '50+', label: 'Projects' },
-                { value: '3', label: 'Disciplines' },
                 { value: '5+', label: 'Years' },
-                { value: '100%', label: 'Client Focused' },
+                { value: '100%', label: 'Focused' },
               ].map(({ value, label }) => (
-                <div key={label} className="group cursor-default">
-                  <p className="font-fraunces text-2xl font-bold text-text-light group-hover:text-brand-orange transition-colors duration-300">{value}</p>
-                  <p className="text-text-muted text-xs mt-0.5 tracking-wide uppercase">{label}</p>
+                <div key={label} className="text-center">
+                  <p className="font-fraunces text-xl font-bold text-text-light">{value}</p>
+                  <p className="text-text-muted text-[10px] mt-0.5 tracking-widest uppercase">{label}</p>
                 </div>
               ))}
             </div>
-          </div>
 
-          {/* Right — image collage */}
-          <div className="hero-images hidden lg:grid grid-cols-2 grid-rows-2 gap-3 h-[520px]">
-            {/* Large image top-left spanning 2 rows */}
-            <div className="row-span-2 rounded-2xl overflow-hidden border border-white/[0.07] relative group">
-              <img
-                src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=700&q=80"
-                alt="Developer coding"
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-              <div className="absolute bottom-4 left-4">
-                <span className="text-xs font-medium text-white/70 bg-black/40 backdrop-blur-sm px-3 py-1 rounded-full border border-white/10">
-                  Software Engineering
-                </span>
-              </div>
-            </div>
-
-            {/* Top-right */}
-            <div className="rounded-2xl overflow-hidden border border-white/[0.07] relative group">
-              <img
-                src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=500&q=80"
-                alt="Data dashboard"
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-              <div className="absolute bottom-3 left-3">
-                <span className="text-xs font-medium text-white/70 bg-black/40 backdrop-blur-sm px-2.5 py-1 rounded-full border border-white/10">
-                  Infrastructure Management Solutions
-                </span>
-              </div>
-            </div>
-
-            {/* Bottom-right */}
-            <div className="rounded-2xl overflow-hidden border border-white/[0.07] relative group">
-              <img
-                src="https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=500&q=80"
-                alt="Video production"
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-              <div className="absolute bottom-3 left-3">
-                <span className="text-xs font-medium text-white/70 bg-black/40 backdrop-blur-sm px-2.5 py-1 rounded-full border border-white/10">
-                  Visual Effects & Media
-                </span>
-              </div>
-            </div>
+            {/* Single CTA */}
+            <Link
+              to="/portfolio"
+              className="group inline-flex items-center gap-2 border border-white/[0.12] text-text-muted px-6 py-3 rounded-xl font-medium text-sm transition-all duration-300 hover:border-brand-orange/40 hover:text-text-light whitespace-nowrap"
+            >
+              View Our Work
+              <svg className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
+            </Link>
           </div>
 
         </div>
+
+        {/* Mobile sub copy */}
+        <p className="text-text-muted text-sm leading-[1.8] text-center mt-6 lg:hidden">
+          One team. Three disciplines. Built for organizations that refuse to settle.
+        </p>
+
       </div>
 
-      <div className="absolute bottom-0 left-0 right-0 h-28 bg-gradient-to-t from-[#080808] to-transparent pointer-events-none" />
+      {/* Bottom fade */}
+      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#060606] to-transparent pointer-events-none z-10" />
     </section>
   );
 }
