@@ -23,8 +23,8 @@ const services = [
   {
     id: 'software',
     number: '01',
-    title: 'Software Engineering',
-    tagline: 'Custom systems built to last.',
+    title: 'Software & Systems Development',
+    tagline: 'Complete digital solutions.',
     description:
       'We design and develop web applications, internal tools, and scalable APIs tailored to your exact workflow — not off-the-shelf templates.',
     tags: ['Web Apps', 'REST APIs', 'Software development', 'Database Administration'],
@@ -48,8 +48,8 @@ const services = [
     title: 'Visual Effects & Media',
     tagline: 'Visuals that move people.',
     description:
-      'From brand films to motion graphics, we craft visual content that communicates your story with precision and style.',
-    tags: ['Motion Graphics', 'Video Editing', 'Visual Effects', 'Brand Films'],
+      'Motion graphics, static design, professional video shooting and editing, visual effects, and comprehensive content creation strategies for all digital platforms.',
+    tags: ['Motion Graphics', 'Video Production', 'VFX', 'Static Design', 'Video Editing', 'Content Strategy'],
     image: 'https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=800&q=80',
     accent: '#F26622',
   },
