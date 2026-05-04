@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Logo from './Logo';
 
 const company = [
   { label: 'About Us', path: '/about' },
@@ -71,9 +72,7 @@ export default function Footer() {
           {/* Brand col */}
           <div className="sm:col-span-2 lg:col-span-5">
             <Link to="/" className="inline-flex items-center gap-2.5 mb-5 group">
-              <div className="w-9 h-9 rounded-xl bg-brand-orange flex items-center justify-center shadow-[0_0_14px_rgba(242,102,34,0.35)] transition-shadow duration-300 group-hover:shadow-[0_0_22px_rgba(242,102,34,0.5)]">
-                <span className="font-fraunces font-bold text-white text-sm">LF</span>
-              </div>
+              <Logo className="w-9 h-9 transition-transform duration-300 group-hover:scale-110" />
               <span className="font-fraunces font-semibold text-text-light text-lg tracking-tight">
                 Linkframe<span className="text-brand-orange">.</span>
               </span>
