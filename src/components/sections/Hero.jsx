@@ -1,8 +1,14 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
+import SequentialTypewriter from '../common/TypewriterText';
 
 export default function Hero() {
   const canvasRef = useRef(null);
+  const [showMainContent, setShowMainContent] = useState(false);
+
+  const handleTypewriterComplete = () => {
+    setShowMainContent(true);
+  };
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -57,6 +63,17 @@ export default function Hero() {
     return () => { cancelAnimationFrame(animId); window.removeEventListener('resize', resize); };
   }, []);
 
+  const finalContent = (
+    <div className="text-center lg:text-left">
+      <h2 className="font-fraunces text-[clamp(2.5rem,7vw,6rem)] font-bold text-white mb-4 leading-[0.9]">
+        Linkframe <span className="text-brand-orange">Technologies</span>
+      </h2>
+      <p className="text-[clamp(1rem,2.5vw,1.8rem)] text-gray-400 font-light leading-relaxed">
+        Integrating Systems, Software and Visual Creativity
+      </p>
+    </div>
+  );
+
   return (
     <section className="relative min-h-screen flex flex-col overflow-hidden bg-[#060606]">
 
@@ -99,88 +116,88 @@ export default function Hero() {
       {/* Content */}
       <div className="container-max section-padding relative z-20 flex flex-col flex-1 pt-32 pb-16 w-full">
 
-        {/* Top — badge + sub copy side by side on desktop */}
-        <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6 mb-auto">
-          {/* Badge */}
-          <div className="flex justify-center lg:justify-start">
-            <div className="inline-flex items-center gap-3 border border-white/[0.08] bg-white/[0.03] backdrop-blur-sm rounded-full px-5 py-2.5">
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-orange opacity-60" />
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-brand-orange" />
-              </span>
-              <span className="text-text-muted text-xs font-medium tracking-[0.2em] uppercase">Software · IMS · VFX</span>
-            </div>
-          </div>
-
-          {/* Sub copy — top right on desktop */}
-          <p className="text-text-muted text-sm leading-[1.8] max-w-xs text-center lg:text-right hidden lg:block">
-            One team. Three disciplines.<br />Built for organizations that refuse to settle.
-          </p>
-        </div>
-
-        {/* Centre — main headline */}
+        {/* Centre — main headline with sequential typewriter effect */}
         <div className="flex-1 flex flex-col justify-center py-12 lg:py-16">
-          <h1 className="hero-title font-fraunces font-bold text-text-light leading-[0.92] tracking-tight text-center lg:text-left">
-            <span className="block text-[clamp(3.5rem,9vw,8rem)]">Engineering.</span>
-            <span className="block text-[clamp(3.5rem,9vw,8rem)] text-brand-orange lg:pl-[5vw]">Systems.</span>
-            <span className="block text-[clamp(3.5rem,9vw,8rem)] text-text-light/35 lg:pl-[10vw]">Visuals.</span>
-          </h1>
+          <div className="hero-title font-fraunces font-bold text-text-light leading-[0.92] tracking-tight text-center lg:text-left min-h-[300px] flex items-center justify-center lg:justify-start">
+            <SequentialTypewriter
+              words={['Engineering.', 'Systems.', 'Visuals.']}
+              finalContent={finalContent}
+              className="w-full"
+              speed={100}
+              pauseBetweenWords={1200}
+              pauseBeforeClear={800}
+              pauseBeforeRestart={3000}
+              loop={true}
+              onComplete={handleTypewriterComplete}
+            />
+          </div>
         </div>
 
-        {/* Bottom row */}
-        <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8 pt-8 border-t border-white/[0.06]">
-
-          {/* Discipline pills */}
-          <div className="flex flex-wrap gap-2 justify-center lg:justify-start">
-            {[
-              { label: 'Software Engineering', isOrange: true },
-              { label: 'IMS Solutions', isOrange: false },
-              { label: 'VFX & Media', isOrange: true },
-            ].map(({ label, isOrange }) => (
-              <div
-                key={label}
-                className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-lg border bg-white/[0.02] ${isOrange ? 'border-brand-orange/20' : 'border-[#0099cc]/20'}`}
-              >
-                <span className={`w-1 h-1 rounded-full ${isOrange ? 'bg-brand-orange' : 'bg-[#0099cc]'}`} />
-                <span className={`text-[10px] font-mono tracking-widest uppercase ${isOrange ? 'text-brand-orange' : 'text-[#0099cc]'}`}>{label}</span>
-              </div>
-            ))}
+        {/* Bottom content - show after typewriter completes */}
+        <div className={`transition-all duration-1000 ${showMainContent ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+          {/* Top — sub copy on desktop */}
+          <div className="flex flex-col lg:flex-row lg:items-center lg:justify-end gap-6 mb-8">
+            {/* Sub copy — top right on desktop */}
+            <p className="text-text-muted text-sm leading-[1.8] max-w-xs text-center lg:text-right hidden lg:block">
+              One team. Three disciplines.<br />Built for organizations that refuse to settle.
+            </p>
           </div>
 
-          {/* Right — stats + CTA */}
-          <div className="flex flex-col sm:flex-row items-center gap-8 justify-center lg:justify-end">
-            {/* Stats */}
-            <div className="flex gap-8">
+          {/* Bottom row */}
+          <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8 pt-8 border-t border-white/[0.06]">
+
+            {/* Discipline pills */}
+            <div className="flex flex-wrap gap-2 justify-center lg:justify-start">
               {[
-                { value: '50+', label: 'Projects' },
-                { value: '5+', label: 'Years' },
-                { value: '100%', label: 'Focused' },
-              ].map(({ value, label }) => (
-                <div key={label} className="text-center">
-                  <p className="font-fraunces text-xl font-bold text-text-light">{value}</p>
-                  <p className="text-text-muted text-[10px] mt-0.5 tracking-widest uppercase">{label}</p>
+                { label: 'Software Engineering', isOrange: true },
+                { label: 'IMS Solutions', isOrange: false },
+                { label: 'VFX & Media', isOrange: true },
+              ].map(({ label, isOrange }) => (
+                <div
+                  key={label}
+                  className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-lg border bg-white/[0.02] ${isOrange ? 'border-brand-orange/20' : 'border-[#0099cc]/20'}`}
+                >
+                  <span className={`w-1 h-1 rounded-full ${isOrange ? 'bg-brand-orange' : 'bg-[#0099cc]'}`} />
+                  <span className={`text-[10px] font-mono tracking-widest uppercase ${isOrange ? 'text-brand-orange' : 'text-[#0099cc]'}`}>{label}</span>
                 </div>
               ))}
             </div>
 
-            {/* Single CTA */}
-            <Link
-              to="/portfolio"
-              className="group inline-flex items-center gap-2 border border-white/[0.12] text-text-muted px-6 py-3 rounded-xl font-medium text-sm transition-all duration-300 hover:border-brand-orange/40 hover:text-text-light whitespace-nowrap"
-            >
-              View Our Work
-              <svg className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-              </svg>
-            </Link>
+            {/* Right — stats + CTA */}
+            <div className="flex flex-col sm:flex-row items-center gap-8 justify-center lg:justify-end">
+              {/* Stats */}
+              <div className="flex gap-8">
+                {[
+                  { value: '50+', label: 'Projects' },
+                  { value: '5+', label: 'Years' },
+                  { value: '100%', label: 'Focused' },
+                ].map(({ value, label }) => (
+                  <div key={label} className="text-center">
+                    <p className="font-fraunces text-xl font-bold text-text-light">{value}</p>
+                    <p className="text-text-muted text-[10px] mt-0.5 tracking-widest uppercase">{label}</p>
+                  </div>
+                ))}
+              </div>
+
+              {/* Single CTA */}
+              <Link
+                to="/portfolio"
+                className="group inline-flex items-center gap-2 border border-white/[0.12] text-text-muted px-6 py-3 rounded-xl font-medium text-sm transition-all duration-300 hover:border-brand-orange/40 hover:text-text-light whitespace-nowrap"
+              >
+                View Our Work
+                <svg className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </Link>
+            </div>
+
           </div>
 
+          {/* Mobile sub copy */}
+          <p className="text-text-muted text-sm leading-[1.8] text-center mt-6 lg:hidden">
+            One team. Three disciplines. Built for organizations that refuse to settle.
+          </p>
         </div>
-
-        {/* Mobile sub copy */}
-        <p className="text-text-muted text-sm leading-[1.8] text-center mt-6 lg:hidden">
-          One team. Three disciplines. Built for organizations that refuse to settle.
-        </p>
 
       </div>
 
