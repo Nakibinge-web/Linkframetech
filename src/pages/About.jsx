@@ -119,60 +119,82 @@ export default function About() {
   return (
     <>
       {/* Hero */}
-      <section className="relative min-h-[100vh] flex items-center overflow-hidden bg-[#080808]">
+      <section className="relative min-h-[100vh] flex flex-col overflow-hidden bg-[#060606]">
         <div className="absolute inset-0">
           <img
-            src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=1600&q=80"
+            src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=1800&q=80"
             alt=""
-            className="w-full h-full object-cover opacity-[0.25]"
+            className="w-full h-full object-cover opacity-[0.28]"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#080808] via-[#080808]/70 to-[#080808]/30" />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#080808] via-transparent to-[#080808]/50" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#060606]/60 via-[#060606]/30 to-[#060606]" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#060606]/80 via-transparent to-[#060606]/50" />
         </div>
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff03_1px,transparent_1px),linear-gradient(to_bottom,#ffffff03_1px,transparent_1px)] bg-[size:80px_80px]" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[600px] bg-brand-orange/[0.04] rounded-full blur-[140px] pointer-events-none" />
-        <div className="absolute top-1/4 right-0 w-[500px] h-[500px] bg-brand-blue/[0.06] rounded-full blur-[120px] pointer-events-none" />
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff02_1px,transparent_1px),linear-gradient(to_bottom,#ffffff02_1px,transparent_1px)] bg-[size:80px_80px]" />
+        <div className="absolute top-1/3 left-1/4 w-[700px] h-[500px] bg-brand-orange/[0.04] rounded-full blur-[160px] pointer-events-none" />
+        <div className="absolute bottom-1/3 right-1/4 w-[500px] h-[400px] bg-[#0099cc]/[0.04] rounded-full blur-[140px] pointer-events-none" />
         <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/[0.08] to-transparent" />
-        <div className="absolute top-0 right-[28%] w-px h-full bg-gradient-to-b from-brand-orange/20 via-white/[0.04] to-transparent hidden lg:block" />
+        {/* Corner bracket */}
+        <div className="absolute top-24 left-8 lg:left-16 z-20 hidden lg:block opacity-40">
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+            <path d="M0 32V0h32" stroke="#F26622" strokeWidth="1" />
+          </svg>
+        </div>
 
-        <div className="container-max section-padding relative z-10 pt-36 pb-24 w-full">
-          <div className="hero-badge flex justify-center lg:justify-start mb-10">
-            <div className="inline-flex items-center gap-3 border border-white/[0.08] bg-white/[0.03] rounded-full px-5 py-2">
-              <span className="w-1.5 h-1.5 rounded-full bg-brand-orange animate-pulse" />
+        {/* Content — bottom anchored */}
+        <div className="container-max section-padding relative z-20 flex flex-col flex-1 pt-32 pb-16 w-full">
+
+          {/* Top — badge */}
+          <div className="flex justify-center lg:justify-start mb-auto">
+            <div className="inline-flex items-center gap-3 border border-white/[0.08] bg-white/[0.03] backdrop-blur-sm rounded-full px-5 py-2.5">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-orange opacity-60" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-brand-orange" />
+              </span>
               <span className="text-text-muted text-xs font-medium tracking-[0.2em] uppercase">Who We Are</span>
             </div>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-0 items-end">
-            <div className="lg:col-span-8 text-center lg:text-left">
-              <h1 className="hero-title font-fraunces font-bold text-text-light leading-[1.0] tracking-tight mb-0">
-                <span className="block text-5xl sm:text-6xl lg:text-[5.5rem] xl:text-[6.5rem]">Software,</span>
-                <span className="block text-5xl sm:text-6xl lg:text-[5.5rem] xl:text-[6.5rem] text-text-light/60 pl-0 lg:pl-16">Systems & Visuals.</span>
-                <span className="block text-5xl sm:text-6xl lg:text-[5.5rem] xl:text-[6.5rem]">One team,</span>
-                <span className="block text-5xl sm:text-6xl lg:text-[5.5rem] xl:text-[6.5rem] text-brand-orange">end to end.</span>
-              </h1>
+          {/* Centre — headline */}
+          <div className="flex-1 flex flex-col justify-center py-12 lg:py-16">
+            <h1 className="hero-title font-fraunces font-bold text-text-light leading-[0.92] tracking-tight text-center lg:text-left">
+              <span className="block text-[clamp(3rem,8vw,7rem)]">Software,</span>
+              <span className="block text-[clamp(3rem,8vw,7rem)] text-text-light/40 lg:pl-[4vw]">Systems &</span>
+              <span className="block text-[clamp(3rem,8vw,7rem)] text-brand-orange lg:pl-[8vw]">Visuals.</span>
+            </h1>
+          </div>
+
+          {/* Bottom row */}
+          <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8 pt-8 border-t border-white/[0.06]">
+
+            {/* Sub copy */}
+            <p className="text-text-muted text-base leading-[1.85] max-w-sm text-center lg:text-left mx-auto lg:mx-0">
+              A cross-discipline team of engineers, architects, and visual artists — building software, systems, and stories that move organizations forward.
+            </p>
+
+            {/* Right — CTA + location */}
+            <div className="flex flex-col sm:flex-row items-center gap-6 justify-center lg:justify-end">
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg border border-white/[0.07] bg-white/[0.02]">
+                <svg className="w-3.5 h-3.5 text-brand-orange flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+                <span className="text-text-muted text-xs">Based in Africa — building beyond it.</span>
+              </div>
+              <Link
+                to="/portfolio"
+                className="group inline-flex items-center gap-2 border border-white/[0.12] text-text-muted px-6 py-3 rounded-xl font-medium text-sm transition-all duration-300 hover:border-brand-orange/40 hover:text-text-light whitespace-nowrap"
+              >
+                View Our Work
+                <svg className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </Link>
             </div>
 
-            <div className="lg:col-span-4 flex flex-col gap-8 lg:pb-3 text-center lg:text-left items-center lg:items-start">
-              <p className="hero-sub text-text-muted text-base leading-relaxed max-w-xs">
-                A cross-discipline team of engineers, architects, and visual artists — building software, systems, and stories that move organizations forward.
-              </p>
-              <div className="hero-cta flex justify-center lg:justify-start">
-                <a
-                  href="/portfolio"
-                  className="group inline-flex items-center gap-2 border border-white/[0.1] text-text-muted px-7 py-3.5 rounded-xl font-medium text-sm transition-all duration-300 hover:border-white/20 hover:text-text-light"
-                >
-                  View Our Work
-                  <svg className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                  </svg>
-                </a>
-              </div>
-            </div>
           </div>
         </div>
 
-        <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-[#0a0a0a] to-transparent pointer-events-none" />
+        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#060606] to-transparent pointer-events-none z-10" />
       </section>
 
       {/* Our Identity — Mission & Vision */}
