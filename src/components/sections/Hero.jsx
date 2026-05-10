@@ -134,8 +134,8 @@ export default function Hero() {
           <div className="flex flex-wrap gap-2 justify-center lg:justify-start">
             {[
               { label: 'Software Engineering', isOrange: true },
-              { label: 'IMS Solutions', isOrange: false },
-              { label: 'VFX & Media', isOrange: true },
+              { label: 'Infrastructure Management Solutions', isOrange: false },
+              { label: 'Visual Effects & Media', isOrange: true },
             ].map(({ label, isOrange }) => (
               <div
                 key={label}

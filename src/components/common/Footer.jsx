@@ -11,8 +11,8 @@ const company = [
 
 const services = [
   { label: 'Software Engineering', path: '/services' },
-  { label: 'IMS Solutions', path: '/services' },
-  { label: 'VFX & Media', path: '/services' },
+  { label: 'Infrastructure Management Solutions', path: '/services' },
+  { label: 'Visual Effects & Media', path: '/services' },
 ];
 
 const socials = [

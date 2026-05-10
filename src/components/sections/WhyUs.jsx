@@ -5,7 +5,7 @@ const reasons = [
   {
     num: '01',
     title: 'Cross-discipline expertise',
-    body: 'Software, data systems, and visual media — one team, no vendor juggling, no context lost in translation.',
+    body: 'Software, Network systems, and visual media — one team, no vendor juggling, no context lost in translation.',
     accent: 'brand-orange',
     tag: 'MULTI-STACK',
     icon: (
