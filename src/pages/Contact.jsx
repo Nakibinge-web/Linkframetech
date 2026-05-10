@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
-import axios from 'axios';
 import useInView from '../hooks/useInView';
 import CtaBanner from '../components/sections/CtaBanner';
+import api from '../config/api';
 
 const contactInfo = [
   {
@@ -164,7 +164,7 @@ export default function Contact() {
     if (Object.keys(newErrors).length > 0) return;
     setStatus('loading');
     try {
-      const response = await axios.post('http://localhost:8000/api/contact', form);
+      const response = await api.post('/contact', form);
       
       if (response.data.status === 'success') {
         setStatus('success');
