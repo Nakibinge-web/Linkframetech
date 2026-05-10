@@ -1,12 +1,13 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 import useInView from '../hooks/useInView';
 import CtaBanner from '../components/sections/CtaBanner';
 
 const contactInfo = [
   {
     label: 'Email',
-    value: 'linkframe.tech@outlook.com',
-    href: 'mailto:linkframe.tech@outlook.com',
+    value: 'tukamuhebwanewton@gmail.com',
+    href: 'mailto:tukamuhebwanewton@gmail.com',
     icon: (
       <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
         <path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
@@ -128,6 +129,16 @@ export default function Contact() {
   const [heroRef, heroInView] = useInView();
   const [formRef, formInView] = useInView();
 
+  // Auto-reset success message after 5 seconds
+  useEffect(() => {
+    if (status === 'success') {
+      const timer = setTimeout(() => {
+        setStatus('idle');
+      }, 5000);
+      return () => clearTimeout(timer);
+    }
+  }, [status]);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     const updated = { ...form, [name]: value };
@@ -151,15 +162,36 @@ export default function Contact() {
     const newErrors = validate(form);
     setErrors(newErrors);
     if (Object.keys(newErrors).length > 0) return;
-
     setStatus('loading');
     try {
-      // Backend integration pending — replace with axios call
-      await new Promise((res) => setTimeout(res, 1500));
-      setStatus('success');
-      setForm({ name: '', email: '', subject: '', message: '' });
-      setTouched({});
-    } catch {
+      const response = await axios.post('http://localhost:8000/api/contact', form);
+      
+      if (response.data.status === 'success') {
+        setStatus('success');
+        setForm({ name: '', email: '', subject: '', message: '' });
+        setTouched({});
+      } else {
+        throw new Error(response.data.message || 'Something went wrong');
+      }
+    } catch (error) {
+      console.error('Contact form error:', error);
+      
+      if (error.response && error.response.status === 422) {
+        // Map backend validation errors to frontend state
+        const backendErrors = error.response.data.errors;
+        const newErrors = {};
+        Object.keys(backendErrors).forEach(key => {
+          newErrors[key] = backendErrors[key][0]; // Take the first error message
+        });
+        setErrors(newErrors);
+        // Mark all fields with errors as touched so they show red
+        const newTouched = { ...touched };
+        Object.keys(backendErrors).forEach(key => {
+          newTouched[key] = true;
+        });
+        setTouched(newTouched);
+      }
+      
       setStatus('error');
     }
   };
