@@ -1,0 +1,25 @@
+{
+  "short_name": "Linkframe",
+  "name": "Linkframe Technologies",
+  "icons": [
+    {
+      "src": "images/linkframe.png",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/png"
+    },
+    {
+      "src": "images/linkframe.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "images/linkframe.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#F26622",
+  "background_color": "#0a0a0a"
+}
