@@ -1,0 +1,28 @@
+import React from 'react';
+
+const items = [
+  'Software Engineering',
+  'IMS Solutions',
+  'VFX & Media',
+  'Web Applications',
+  'Database Design',
+  'Motion Graphics',
+  'API Development',
+  'Brand Films',
+  'System Architecture',
+];
+
+export default function Marquee() {
+  return (
+    <div className="relative overflow-hidden border-y border-white/[0.05] bg-white/[0.015] py-4">
+      <div className="flex gap-0 animate-marquee whitespace-nowrap">
+        {[...items, ...items].map((item, i) => (
+          <span key={i} className="inline-flex items-center gap-4 px-6 text-sm font-medium text-text-muted uppercase tracking-widest">
+            <span className="w-1 h-1 rounded-full bg-brand-orange shrink-0" />
+            {item}
+          </span>
+        ))}
+      </div>
+    </div>
+  );
+}
