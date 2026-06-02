@@ -146,22 +146,22 @@ export default function Hero() {
           {/* Bottom row */}
           <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8 pt-8 border-t border-white/[0.06]">
 
-            {/* Discipline pills */}
-            <div className="flex flex-wrap gap-2 justify-center lg:justify-start">
-              {[
-                { label: 'Software Engineering', isOrange: true },
-                { label: 'IMS Solutions', isOrange: false },
-                { label: 'VFX & Media', isOrange: true },
-              ].map(({ label, isOrange }) => (
-                <div
-                  key={label}
-                  className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-lg border bg-white/[0.02] ${isOrange ? 'border-brand-orange/20' : 'border-[#0099cc]/20'}`}
-                >
-                  <span className={`w-1 h-1 rounded-full ${isOrange ? 'bg-brand-orange' : 'bg-[#0099cc]'}`} />
-                  <span className={`text-[10px] font-mono tracking-widest uppercase ${isOrange ? 'text-brand-orange' : 'text-[#0099cc]'}`}>{label}</span>
-                </div>
-              ))}
-            </div>
+          {/* Discipline pills */}
+          <div className="flex flex-wrap gap-2 justify-center lg:justify-start">
+            {[
+              { label: 'Software Engineering', isOrange: true },
+              { label: 'IMS Solutions', isOrange: false },
+              { label: 'VFX & Media', isOrange: true },
+            ].map(({ label, isOrange }) => (
+              <div
+                key={label}
+                className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-lg border bg-white/[0.02] ${isOrange ? 'border-brand-orange/20' : 'border-[#0099cc]/20'}`}
+              >
+                <span className={`w-1 h-1 rounded-full ${isOrange ? 'bg-brand-orange' : 'bg-[#0099cc]'}`} />
+                <span className={`text-[10px] font-mono tracking-widest uppercase ${isOrange ? 'text-brand-orange' : 'text-[#0099cc]'}`}>{label}</span>
+              </div>
+            ))}
+          </div>
 
             {/* Right — stats + CTA */}
             <div className="flex flex-col sm:flex-row items-center gap-8 justify-center lg:justify-end">

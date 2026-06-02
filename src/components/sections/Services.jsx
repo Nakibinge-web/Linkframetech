@@ -9,7 +9,7 @@ const services = [
     title: 'Software Engineering',
     tagline: 'Architecture that scales.',
     description: 'Custom web applications, REST APIs, and internal systems engineered for your exact workflow — not adapted from templates.',
-    tags: ['Web Apps', 'REST APIs', 'System Architecture', 'Integrations'],
+    tags: ['Web Apps', 'REST APIs', 'Software development', 'Database Administration'],
     accent: 'brand-orange',
     icon: (
       <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
@@ -20,10 +20,10 @@ const services = [
   {
     id: 'ims',
     number: '02',
-    title: 'IMS Solutions',
+    title: 'Infrastructure Management Solutions',
     tagline: 'Data that drives decisions.',
-    description: 'Information management systems for schools, NGOs, and enterprises — reducing manual overhead and surfacing the insights that matter.',
-    tags: ['School Systems', 'Inventory', 'Dashboards', 'Data Migration'],
+    description: 'Infrastructure management solutions for schools, NGOs, and enterprises — reducing manual overhead and surfacing the insights that matter.',
+    tags: ['Networking', 'Wifi Setups', 'Cloud Services', 'Server Management'],
     accent: '[#0099cc]',
     icon: (
       <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
@@ -35,10 +35,10 @@ const services = [
   {
     id: 'vfx',
     number: '03',
-    title: 'VFX & Media',
+    title: 'Visual Effects & Media',
     tagline: 'Visuals with intent.',
     description: 'Motion graphics, brand films, and visual effects crafted to communicate your story with cinematic precision and style.',
-    tags: ['Motion Graphics', 'Visual Effects', 'Brand Films', 'Video Editing'],
+    tags: ['Motion Graphics', 'Digital Marketting', 'Brand Films', 'Video Editing'],
     accent: 'brand-orange',
     icon: (
       <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>

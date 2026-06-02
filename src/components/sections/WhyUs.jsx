@@ -5,7 +5,7 @@ const reasons = [
   {
     num: '01',
     title: 'Cross-discipline expertise',
-    body: 'Software, data systems, and visual media — one team, no vendor juggling, no context lost in translation.',
+    body: 'Software, Network systems, and visual media — one team, no vendor juggling, no context lost in translation.',
     accent: 'brand-orange',
     tag: 'MULTI-STACK',
     icon: (
@@ -68,23 +68,21 @@ export default function WhyUs() {
 
         {/* Header */}
         <div ref={headerRef} className={`fade-up ${headerInView ? 'in-view' : ''} mb-16`}>
-          {/* Terminal badge */}
+          {/* Section Badge */}
           <div className="flex justify-center lg:justify-start mb-8">
-            <div className="inline-flex flex-col rounded-xl border border-white/[0.08] overflow-hidden">
-              <div className="flex items-center gap-2 px-4 py-2 bg-white/[0.04] border-b border-white/[0.06]">
-                <span className="w-2 h-2 rounded-full bg-white/10" />
-                <span className="w-2 h-2 rounded-full bg-white/10" />
-                <span className="w-2 h-2 rounded-full bg-brand-orange/40" />
-                <span className="text-white/20 text-[10px] font-mono ml-2">why-linkframe.sys</span>
+            <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-white/[0.03] border border-white/[0.08] backdrop-blur-sm group">
+              <div className="relative">
+                <span className="flex h-2 w-2 rounded-full bg-brand-orange shadow-[0_0_10px_rgba(242,102,34,0.5)]" />
+                <span className="absolute inset-0 rounded-full bg-brand-orange animate-ping opacity-40" />
               </div>
-              <div className="px-4 py-2.5 bg-[#0a0a0a]">
-                <span className="text-brand-orange text-[10px] font-mono">$ query --module=WHY_US --status=ACTIVE</span>
-              </div>
+              <span className="text-text-muted text-[10px] font-mono tracking-[0.2em] uppercase group-hover:text-brand-orange transition-colors duration-300">
+                Why Linkframe
+              </span>
             </div>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-end text-center lg:text-left">
-            <h2 className="font-fraunces text-4xl sm:text-5xl font-bold text-text-light leading-[1.0]">
+            <h2 className="font-fraunces text-3xl sm:text-4xl lg:text-5xl font-bold text-text-light leading-[1.1]">
               Built to last.<br /><span className="text-brand-orange">Partnered to grow.</span>
             </h2>
             <p className="text-text-muted text-base leading-[1.85] max-w-sm mx-auto lg:mx-0 border-l-0 lg:border-l-2 lg:border-brand-orange/30 lg:pl-5">

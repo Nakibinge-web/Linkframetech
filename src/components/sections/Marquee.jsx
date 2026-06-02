@@ -1,15 +1,18 @@
 import React from 'react';
 
 const items = [
-  'Software Engineering',
-  'IMS Solutions',
-  'VFX & Media',
+  'Software Development',
   'Web Applications',
-  'Database Design',
-  'Motion Graphics',
   'API Development',
+  'Database Design',
+  'Network Systems',
+  'Wifi Setups',
+  'Cloud Services',
+  'Server Management',
+  'Visual Effects & Media',
+  'Motion Graphics',
+  'Digital Marketting',
   'Brand Films',
-  'System Architecture',
 ];
 
 export default function Marquee() {
